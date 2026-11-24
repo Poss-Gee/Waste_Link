@@ -102,7 +102,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
             onClick={() => setActiveSubTab(tab.id)}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${
               activeSubTab === tab.id
-                ? "bg-[#14532D] text-white shadow-xs font-bold"
+                ? "bg-[#123B66] text-white shadow-xs font-bold"
                 : "text-gray-600 hover:bg-gray-100"
             }`}
           >
@@ -128,13 +128,13 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
             <div className="bg-white p-4 rounded-2xl border border-gray-200 shadow-xs">
               <span className="text-[11px] text-gray-400 font-semibold uppercase">Total Households</span>
               <div className="text-2xl font-black text-gray-900 mt-1">{totalHouseholds}</div>
-              <span className="text-[10px] text-emerald-700 font-medium">Verified Accounts</span>
+              <span className="text-[10px] text-blue-700 font-medium">Verified Accounts</span>
             </div>
 
             <div className="bg-white p-4 rounded-2xl border border-gray-200 shadow-xs">
               <span className="text-[11px] text-gray-400 font-semibold uppercase">Tricycle Collectors</span>
-              <div className="text-2xl font-black text-[#14532D] mt-1">{registeredCollectors}</div>
-              <span className="text-[10px] text-emerald-600 font-medium">{verifiedCollectors} Verified &bull; {activeOnlineCollectors} Online</span>
+              <div className="text-2xl font-black text-[#123B66] mt-1">{registeredCollectors}</div>
+              <span className="text-[10px] text-blue-600 font-medium">{verifiedCollectors} Verified &bull; {activeOnlineCollectors} Online</span>
             </div>
 
             <div className="bg-white p-4 rounded-2xl border border-gray-200 shadow-xs">
@@ -146,13 +146,13 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
             <div className="bg-white p-4 rounded-2xl border border-gray-200 shadow-xs">
               <span className="text-[11px] text-gray-400 font-semibold uppercase">Total Pickups</span>
               <div className="text-2xl font-black text-gray-900 mt-1">{totalRequests}</div>
-              <span className="text-[10px] text-emerald-700 font-medium">{completedCollections} Done &bull; {cancelledCollections} Cancelled</span>
+              <span className="text-[10px] text-blue-700 font-medium">{completedCollections} Done &bull; {cancelledCollections} Cancelled</span>
             </div>
 
-            <div className="bg-white p-4 rounded-2xl border border-emerald-200 shadow-xs bg-emerald-50/30">
-              <span className="text-[11px] text-emerald-900 font-semibold uppercase">Gross GMV (GH₵)</span>
-              <div className="text-2xl font-black text-[#14532D] mt-1">GH₵ {totalTransactionValue.toFixed(0)}</div>
-              <span className="text-[10px] text-emerald-800 font-medium">100% Settled</span>
+            <div className="bg-white p-4 rounded-2xl border border-blue-200 shadow-xs bg-blue-50/30">
+              <span className="text-[11px] text-blue-900 font-semibold uppercase">Gross GMV (GH₵)</span>
+              <div className="text-2xl font-black text-[#123B66] mt-1">GH₵ {totalTransactionValue.toFixed(0)}</div>
+              <span className="text-[10px] text-blue-800 font-medium">100% Settled</span>
             </div>
 
           </div>
@@ -164,14 +164,14 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
             <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-xs space-y-4">
               <h3 className="font-bold text-sm text-gray-900 flex items-center justify-between">
                 <span>Payment Channels Ratio</span>
-                <span className="text-xs font-semibold text-emerald-700">Live Breakdown</span>
+                <span className="text-xs font-semibold text-blue-700">Live Breakdown</span>
               </h3>
 
               <div className="space-y-3">
                 <div>
                   <div className="flex justify-between text-xs font-medium mb-1">
                     <span className="text-gray-600 flex items-center gap-1">
-                      <CreditCard className="w-3.5 h-3.5 text-emerald-600" />
+                      <CreditCard className="w-3.5 h-3.5 text-blue-600" />
                       Mobile Money (MTN / Telecel / AT)
                     </span>
                     <span className="font-bold text-gray-900">
@@ -180,7 +180,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                   </div>
                   <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-emerald-600 rounded-full transition-all"
+                      className="h-full bg-blue-600 rounded-full transition-all"
                       style={{
                         width: `${totalTransactionValue > 0 ? (momoValue / totalTransactionValue) * 100 : 50}%`,
                       }}
@@ -237,7 +237,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                       </div>
                       <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
                         <div
-                          className="h-full bg-[#14532D] rounded-full"
+                          className="h-full bg-[#123B66] rounded-full"
                           style={{ width: `${pct}%` }}
                         />
                       </div>
@@ -251,7 +251,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
             <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-xs space-y-3">
               <div className="flex items-center justify-between">
                 <h3 className="font-bold text-sm text-gray-900 flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                  <ShieldCheck className="w-4 h-4 text-blue-600" />
                   Verification Action Needed
                 </h3>
                 <span className="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">
@@ -285,7 +285,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                         <div className="flex gap-1 flex-shrink-0">
                           <button
                             onClick={() => verifyCollector(col.id, true)}
-                            className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition-colors"
+                            className="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition-colors"
                           >
                             Approve
                           </button>
@@ -315,7 +315,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
           <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-xs space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="font-bold text-sm text-gray-900 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-emerald-600" />
+                <Activity className="w-4 h-4 text-blue-600" />
                 Real-Time Platform Activity Audit Trail
               </h3>
               <span className="text-xs text-gray-400">Live system events</span>
@@ -325,7 +325,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
               {activityLogs.slice(0, 8).map((log) => (
                 <div key={log.id} className="py-2.5 flex items-start justify-between gap-3 text-xs">
                   <div className="space-y-0.5">
-                    <span className="font-mono text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded">
+                    <span className="font-mono text-[10px] font-bold text-blue-800 bg-blue-50 px-2 py-0.5 rounded">
                       {log.action}
                     </span>
                     <p className="text-gray-800 font-medium mt-1">{log.details}</p>
@@ -365,7 +365,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
             {collectors.map((c) => (
               <div key={c.id} className="py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl overflow-hidden bg-emerald-100 flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl overflow-hidden bg-blue-100 flex-shrink-0">
                     <img src={c.avatar} alt={c.name} className="w-full h-full object-cover" />
                   </div>
                   <div className="space-y-0.5">
@@ -373,7 +373,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                       <h4 className="font-bold text-gray-900 text-sm">{c.name}</h4>
                       <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
                         c.isVerified
-                          ? "bg-emerald-100 text-emerald-800"
+                          ? "bg-blue-100 text-blue-800"
                           : c.verificationStatus === "pending"
                           ? "bg-amber-100 text-amber-800"
                           : "bg-rose-100 text-rose-800"
@@ -395,7 +395,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                     <>
                       <button
                         onClick={() => verifyCollector(c.id, true)}
-                        className="px-4 py-2 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors shadow-xs"
+                        className="px-4 py-2 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors shadow-xs"
                       >
                         Approve &amp; Authenticate
                       </button>
@@ -407,7 +407,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                       </button>
                     </>
                   ) : (
-                    <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 flex items-center gap-1">
+                    <span className="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-200 flex items-center gap-1">
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       Approved &amp; Certified
                     </span>
@@ -472,11 +472,11 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                       <td className="py-3 font-semibold text-gray-900">{r.householdName}</td>
                       <td className="py-3 text-gray-700">{r.collectorName || "Unassigned"}</td>
                       <td className="py-3 text-gray-600">{r.wasteCategory} ({r.quantity.split(" ")[0]})</td>
-                      <td className="py-3 text-emerald-800 font-medium">{r.area}</td>
+                      <td className="py-3 text-blue-800 font-medium">{r.area}</td>
                       <td className="py-3">
                         <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
                           r.status === "paid"
-                            ? "bg-emerald-100 text-emerald-800"
+                            ? "bg-blue-100 text-blue-800"
                             : r.status === "cancelled"
                             ? "bg-rose-100 text-rose-800"
                             : "bg-amber-100 text-amber-800"
@@ -484,14 +484,14 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                           {r.status.replace(/_/g, " ").toUpperCase()}
                         </span>
                       </td>
-                      <td className="py-3 text-right font-black text-[#14532D]">
+                      <td className="py-3 text-right font-black text-[#123B66]">
                         GH₵ {r.agreedPrice || r.initialEstimatedPrice}
                       </td>
                       <td className="py-3 text-right">
                         {r.status === "paid" && (
                           <button
                             onClick={() => setSelectedReceipt(r)}
-                            className="text-xs text-emerald-700 hover:underline font-semibold"
+                            className="text-xs text-blue-700 hover:underline font-semibold"
                           >
                             Receipt
                           </button>
@@ -527,7 +527,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                     <h4 className="font-bold text-sm text-gray-900">{c.category}</h4>
                     <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
                       c.status === "resolved"
-                        ? "bg-emerald-100 text-emerald-800"
+                        ? "bg-blue-100 text-blue-800"
                         : "bg-rose-100 text-rose-800"
                     }`}>
                       {c.status.toUpperCase()}
@@ -546,9 +546,9 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                 </div>
 
                 {c.adminNotes && (
-                  <div className="p-3 bg-emerald-50 rounded-xl text-xs text-emerald-950 border border-emerald-100">
-                    <p className="font-bold text-emerald-900">Resolution:</p>
-                    <p className="text-[11px] text-emerald-800">{c.adminNotes}</p>
+                  <div className="p-3 bg-blue-50 rounded-xl text-xs text-blue-950 border border-blue-100">
+                    <p className="font-bold text-blue-900">Resolution:</p>
+                    <p className="text-[11px] text-blue-800">{c.adminNotes}</p>
                   </div>
                 )}
 
@@ -556,7 +556,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                   <div className="flex justify-end">
                     <button
                       onClick={() => setResolvingComplaintId(c.id)}
-                      className="px-4 py-2 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors shadow-xs"
+                      className="px-4 py-2 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors shadow-xs"
                     >
                       Mediate &amp; Resolve Dispute
                     </button>
@@ -604,16 +604,16 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                   .map((h) => (
                     <tr key={h.id} className="hover:bg-gray-50/50">
                       <td className="py-3 font-bold text-gray-900 flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-full overflow-hidden bg-emerald-100 flex-shrink-0">
+                        <div className="w-7 h-7 rounded-full overflow-hidden bg-blue-100 flex-shrink-0">
                           <img src={h.avatar} alt={h.name} className="w-full h-full object-cover" />
                         </div>
                         <span>{h.name}</span>
                       </td>
                       <td className="py-3 text-gray-700">{h.area} &bull; {h.landmark}</td>
                       <td className="py-3 font-mono text-gray-600">{h.phone}</td>
-                      <td className="py-3 text-right font-bold text-emerald-800">{h.totalRequests}</td>
+                      <td className="py-3 text-right font-bold text-blue-800">{h.totalRequests}</td>
                       <td className="py-3 text-right">
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-800">
                           Active
                         </span>
                       </td>
@@ -637,7 +637,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
             </div>
             <div className="text-right">
               <span className="text-xs text-gray-400">Total Volume</span>
-              <p className="text-xl font-black text-[#14532D]">GH₵ {totalTransactionValue.toFixed(2)}</p>
+              <p className="text-xl font-black text-[#123B66]">GH₵ {totalTransactionValue.toFixed(2)}</p>
             </div>
           </div>
 
@@ -658,12 +658,12 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <span className="text-sm font-black text-[#14532D]">
+                    <span className="text-sm font-black text-[#123B66]">
                       GH₵ {(r.agreedPrice || 45).toFixed(2)}
                     </span>
                     <button
                       onClick={() => setSelectedReceipt(r)}
-                      className="px-3 py-1 bg-gray-100 hover:bg-emerald-50 text-emerald-800 rounded-lg text-xs font-semibold"
+                      className="px-3 py-1 bg-gray-100 hover:bg-blue-50 text-blue-800 rounded-lg text-xs font-semibold"
                     >
                       Audit Receipt
                     </button>
@@ -682,7 +682,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
             {activityLogs.map((log) => (
               <div key={log.id} className="py-2.5 flex items-start justify-between text-xs gap-3">
                 <div>
-                  <span className="font-mono text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded">
+                  <span className="font-mono text-[10px] font-bold text-blue-800 bg-blue-50 px-2 py-0.5 rounded">
                     {log.action}
                   </span>
                   <p className="text-gray-800 mt-1">{log.details}</p>
@@ -721,7 +721,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                   value={adminResolutionNotes}
                   onChange={(e) => setAdminResolutionNotes(e.target.value)}
                   placeholder="e.g. Spilled waste cleaned by collector; verified via follow-up call. Case concluded amicably."
-                  className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+                  className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
                 />
               </div>
 
@@ -735,7 +735,7 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800"
+                  className="px-5 py-2 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800"
                 >
                   Confirm Resolution
                 </button>

@@ -29,7 +29,7 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="bg-gradient-to-br from-[#14532D] via-[#166534] to-[#15803D] rounded-3xl p-8 sm:p-14 text-white shadow-2xl relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#123B66] via-[#1E40AF] to-[#1D4ED8] rounded-3xl p-8 sm:p-14 text-white shadow-2xl relative overflow-hidden">
             
             {/* Background Tricycle Artwork */}
             <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none transform translate-x-10 translate-y-10">
@@ -37,8 +37,8 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
             </div>
 
             <div className="max-w-2xl space-y-6 relative z-10">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-emerald-200 text-xs font-bold border border-white/15 backdrop-blur-md">
-                <Sparkles className="w-4 h-4 text-emerald-300" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-blue-200 text-xs font-bold border border-white/15 backdrop-blur-md">
+                <Sparkles className="w-4 h-4 text-blue-300" />
                 <span>Smart Household Waste &bull; Greater Accra Municipal Pilot</span>
               </div>
 
@@ -46,7 +46,7 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
                 Connecting Homes. Empowering Collectors. Cleaner Communities.
               </h1>
 
-              <p className="text-sm sm:text-base text-emerald-100 leading-relaxed font-normal">
+              <p className="text-sm sm:text-base text-blue-100 leading-relaxed font-normal">
                 WasteLink Ghana is an independent technology platform bridging Ghanaian households with verified independent tricycle waste operators (Aboboyaa / Motor King). Request on-demand collection, negotiate fair prices in GH₵, and settle instantly with cash or Mobile Money.
               </p>
 
@@ -54,15 +54,15 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
               <div className="pt-4 flex flex-wrap gap-3">
                 <button
                   onClick={() => onEnterRole("household")}
-                  className="px-6 py-3.5 bg-white text-[#14532D] font-black rounded-2xl shadow-lg hover:bg-emerald-50 transition-all transform hover:scale-[1.02] flex items-center gap-2 text-sm"
+                  className="px-6 py-3.5 bg-white text-[#123B66] font-black rounded-2xl shadow-lg hover:bg-blue-50 transition-all transform hover:scale-[1.02] flex items-center gap-2 text-sm"
                 >
-                  <Users className="w-4 h-4 text-[#16A34A]" />
+                  <Users className="w-4 h-4 text-[#2563EB]" />
                   <span>Enter as Household</span>
                 </button>
 
                 <button
                   onClick={() => onEnterRole("collector")}
-                  className="px-6 py-3.5 bg-[#16A34A] text-white font-black rounded-2xl shadow-lg hover:bg-emerald-500 transition-all transform hover:scale-[1.02] flex items-center gap-2 text-sm border border-emerald-400"
+                  className="px-6 py-3.5 bg-[#2563EB] text-white font-black rounded-2xl shadow-lg hover:bg-blue-500 transition-all transform hover:scale-[1.02] flex items-center gap-2 text-sm border border-blue-400"
                 >
                   <Truck className="w-4 h-4 text-white" />
                   <span>Enter as Tricycle Collector</span>
@@ -72,7 +72,7 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
                   onClick={() => onEnterRole("admin")}
                   className="px-6 py-3.5 bg-black/30 text-white font-bold rounded-2xl border border-white/20 hover:bg-black/50 transition-all flex items-center gap-2 text-sm"
                 >
-                  <ShieldCheck className="w-4 h-4 text-emerald-300" />
+                  <ShieldCheck className="w-4 h-4 text-blue-300" />
                   <span>Admin Console</span>
                 </button>
               </div>
@@ -82,19 +82,19 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
             {/* Live Stats Pill in Banner */}
             <div className="mt-10 pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
               <div>
-                <span className="text-emerald-300 block font-medium">Platform Model</span>
+                <span className="text-blue-300 block font-medium">Platform Model</span>
                 <span className="font-bold text-white text-sm">100% On-Demand</span>
               </div>
               <div>
-                <span className="text-emerald-300 block font-medium">Pricing Scheme</span>
+                <span className="text-blue-300 block font-medium">Pricing Scheme</span>
                 <span className="font-bold text-white text-sm">Negotiated in GH₵</span>
               </div>
               <div>
-                <span className="text-emerald-300 block font-medium">Disposal Safety</span>
+                <span className="text-blue-300 block font-medium">Disposal Safety</span>
                 <span className="font-bold text-white text-sm">Approved Landfills</span>
               </div>
               <div>
-                <span className="text-emerald-300 block font-medium">PWA Offline Capable</span>
+                <span className="text-blue-300 block font-medium">PWA Offline Capable</span>
                 <span className="font-bold text-white text-sm">Local Queue Sync</span>
               </div>
             </div>
@@ -107,7 +107,7 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-card space-y-6">
           <div className="text-center max-w-xl mx-auto space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
               Interactive Prototype Demo Accounts
             </span>
             <h2 className="text-2xl font-black text-gray-900">
@@ -121,9 +121,9 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
             
             {/* Household Card */}
-            <div className="p-6 rounded-2xl border-2 border-emerald-100 hover:border-emerald-600 bg-emerald-50/20 transition-all flex flex-col justify-between space-y-4">
+            <div className="p-6 rounded-2xl border-2 border-blue-100 hover:border-blue-600 bg-blue-50/20 transition-all flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center">
                   <Users className="w-6 h-6" />
                 </div>
                 <h3 className="font-bold text-base text-gray-900">Household / Resident</h3>
@@ -141,7 +141,7 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
                   switchUserById(households[0].id);
                   onEnterRole("household");
                 }}
-                className="w-full py-3 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                className="w-full py-3 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
               >
                 <span>Launch Household Portal</span>
                 <ArrowRight className="w-4 h-4" />
@@ -149,9 +149,9 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
             </div>
 
             {/* Collector Card */}
-            <div className="p-6 rounded-2xl border-2 border-emerald-100 hover:border-emerald-600 bg-emerald-50/20 transition-all flex flex-col justify-between space-y-4">
+            <div className="p-6 rounded-2xl border-2 border-blue-100 hover:border-blue-600 bg-blue-50/20 transition-all flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center">
                   <Truck className="w-6 h-6" />
                 </div>
                 <h3 className="font-bold text-base text-gray-900">Tricycle Waste Collector</h3>
@@ -169,7 +169,7 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
                   switchUserById(collectors[0].id);
                   onEnterRole("collector");
                 }}
-                className="w-full py-3 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                className="w-full py-3 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
               >
                 <span>Launch Collector Hub</span>
                 <ArrowRight className="w-4 h-4" />
@@ -177,9 +177,9 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
             </div>
 
             {/* Administrator Card */}
-            <div className="p-6 rounded-2xl border-2 border-emerald-100 hover:border-emerald-600 bg-emerald-50/20 transition-all flex flex-col justify-between space-y-4">
+            <div className="p-6 rounded-2xl border-2 border-blue-100 hover:border-blue-600 bg-blue-50/20 transition-all flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <h3 className="font-bold text-base text-gray-900">Platform Administrator</h3>
@@ -197,7 +197,7 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
                   switchUserById(admin.id);
                   onEnterRole("admin");
                 }}
-                className="w-full py-3 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                className="w-full py-3 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
               >
                 <span>Launch Admin Console</span>
                 <ArrowRight className="w-4 h-4" />
@@ -222,7 +222,7 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs space-y-2 text-center">
-              <div className="w-10 h-10 rounded-full bg-[#14532D] text-white flex items-center justify-center mx-auto font-black text-sm">
+              <div className="w-10 h-10 rounded-full bg-[#123B66] text-white flex items-center justify-center mx-auto font-black text-sm">
                 1
               </div>
               <h3 className="font-bold text-sm text-gray-900">Request Pickup</h3>
@@ -232,7 +232,7 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs space-y-2 text-center">
-              <div className="w-10 h-10 rounded-full bg-[#14532D] text-white flex items-center justify-center mx-auto font-black text-sm">
+              <div className="w-10 h-10 rounded-full bg-[#123B66] text-white flex items-center justify-center mx-auto font-black text-sm">
                 2
               </div>
               <h3 className="font-bold text-sm text-gray-900">Negotiate Price</h3>
@@ -242,7 +242,7 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs space-y-2 text-center">
-              <div className="w-10 h-10 rounded-full bg-[#14532D] text-white flex items-center justify-center mx-auto font-black text-sm">
+              <div className="w-10 h-10 rounded-full bg-[#123B66] text-white flex items-center justify-center mx-auto font-black text-sm">
                 3
               </div>
               <h3 className="font-bold text-sm text-gray-900">Track &amp; Load</h3>
@@ -252,7 +252,7 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs space-y-2 text-center">
-              <div className="w-10 h-10 rounded-full bg-[#14532D] text-white flex items-center justify-center mx-auto font-black text-sm">
+              <div className="w-10 h-10 rounded-full bg-[#123B66] text-white flex items-center justify-center mx-auto font-black text-sm">
                 4
               </div>
               <h3 className="font-bold text-sm text-gray-900">Pay &amp; Receipt</h3>

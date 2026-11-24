@@ -148,7 +148,7 @@ export default function RequestCollectionForm({
       <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-xs">
         <div className="flex items-center justify-between">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-[#14532D] mb-2">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-[#123B66] mb-2">
               <Sparkles className="w-3.5 h-3.5" />
               On-Demand Collection Request
             </div>
@@ -174,10 +174,10 @@ export default function RequestCollectionForm({
         <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-xs space-y-4">
           <div className="flex items-center justify-between border-b border-gray-100 pb-3">
             <h3 className="text-sm font-bold text-gray-900 flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-[#14532D] text-white text-[11px] flex items-center justify-center font-bold">1</span>
+              <span className="w-5 h-5 rounded-full bg-[#123B66] text-white text-[11px] flex items-center justify-center font-bold">1</span>
               Collection Location (Ghana)
             </h3>
-            <span className="text-[11px] text-emerald-700 font-semibold">Tricycle GPS Target</span>
+            <span className="text-[11px] text-blue-700 font-semibold">Tricycle GPS Target</span>
           </div>
 
           <GhanaMapPicker
@@ -204,7 +204,7 @@ export default function RequestCollectionForm({
                   if (errors.area) setErrors((prev) => ({ ...prev, area: undefined }));
                 }}
                 placeholder="e.g. Madina, East Legon, Adenta"
-                className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-emerald-500 focus:outline-hidden ${
+                className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:outline-hidden ${
                   errors.area ? "border-rose-400 bg-rose-50/40" : "border-gray-300"
                 }`}
               />
@@ -228,7 +228,7 @@ export default function RequestCollectionForm({
                   if (errors.landmark) setErrors((prev) => ({ ...prev, landmark: undefined }));
                 }}
                 placeholder="e.g. Opposite Starbites, Behind Total station"
-                className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-emerald-500 focus:outline-hidden ${
+                className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:outline-hidden ${
                   errors.landmark ? "border-rose-400 bg-rose-50/40" : "border-gray-300"
                 }`}
               />
@@ -252,7 +252,7 @@ export default function RequestCollectionForm({
                   if (errors.address) setErrors((prev) => ({ ...prev, address: undefined }));
                 }}
                 placeholder="e.g. House 24, Boundary Road (Green gate)"
-                className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-emerald-500 focus:outline-hidden ${
+                className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:outline-hidden ${
                   errors.address ? "border-rose-400 bg-rose-50/40" : "border-gray-300"
                 }`}
               />
@@ -270,7 +270,7 @@ export default function RequestCollectionForm({
         <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-xs space-y-4">
           <div className="flex items-center justify-between border-b border-gray-100 pb-3">
             <h3 className="text-sm font-bold text-gray-900 flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-[#14532D] text-white text-[11px] flex items-center justify-center font-bold">2</span>
+              <span className="w-5 h-5 rounded-full bg-[#123B66] text-white text-[11px] flex items-center justify-center font-bold">2</span>
               Waste Classification &amp; Quantity
             </h3>
             <span className="text-[11px] text-gray-500">Accra Municipal Guidelines</span>
@@ -296,13 +296,13 @@ export default function RequestCollectionForm({
                   onClick={() => handleCategoryChange(cat)}
                   className={`p-3 rounded-xl text-left border text-xs font-medium transition-all flex items-start justify-between ${
                     wasteCategory === cat
-                      ? "border-emerald-600 bg-emerald-50 text-emerald-950 font-bold shadow-xs"
-                      : "border-gray-200 text-gray-700 hover:border-emerald-300 bg-white"
+                      ? "border-blue-600 bg-blue-50 text-blue-950 font-bold shadow-xs"
+                      : "border-gray-200 text-gray-700 hover:border-blue-300 bg-white"
                   }`}
                 >
                   <span>{cat}</span>
                   {wasteCategory === cat && (
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 ml-2" />
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 ml-2" />
                   )}
                 </button>
               ))}
@@ -328,8 +328,8 @@ export default function RequestCollectionForm({
                   onClick={() => handleQuantityChange(q)}
                   className={`p-3 rounded-xl text-center border text-xs font-medium transition-all ${
                     quantity === q
-                      ? "border-emerald-600 bg-[#14532D] text-white font-bold shadow-xs"
-                      : "border-gray-200 text-gray-700 hover:border-emerald-300 bg-white"
+                      ? "border-blue-600 bg-[#123B66] text-white font-bold shadow-xs"
+                      : "border-gray-200 text-gray-700 hover:border-blue-300 bg-white"
                   }`}
                 >
                   {q}
@@ -350,7 +350,7 @@ export default function RequestCollectionForm({
                 if (errors.description) setErrors((prev) => ({ ...prev, description: undefined }));
               }}
               placeholder="e.g. 4 black bin bags filled with kitchen rubbish, tied tightly."
-              className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-emerald-500 focus:outline-hidden ${
+              className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:outline-hidden ${
                 errors.description ? "border-rose-400 bg-rose-50/40" : "border-gray-300"
               }`}
             />
@@ -371,7 +371,7 @@ export default function RequestCollectionForm({
               value={specialInstructions}
               onChange={(e) => setSpecialInstructions(e.target.value)}
               placeholder="e.g. Call before honking, keep gate closed for pets."
-              className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+              className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
             />
           </div>
         </div>
@@ -380,7 +380,7 @@ export default function RequestCollectionForm({
         <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-xs space-y-4">
           <div className="flex items-center justify-between border-b border-gray-100 pb-3">
             <h3 className="text-sm font-bold text-gray-900 flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-[#14532D] text-white text-[11px] flex items-center justify-center font-bold">3</span>
+              <span className="w-5 h-5 rounded-full bg-[#123B66] text-white text-[11px] flex items-center justify-center font-bold">3</span>
               Waste Photograph (Helps Collectors Quote Fairly)
             </h3>
             <span className="text-[11px] text-gray-500">Optional but recommended</span>
@@ -393,8 +393,8 @@ export default function RequestCollectionForm({
                 onClick={() => setPhotoUrl(sample.url)}
                 className={`relative rounded-xl overflow-hidden border-2 cursor-pointer transition-all aspect-video group ${
                   photoUrl === sample.url
-                    ? "border-emerald-600 ring-2 ring-emerald-400"
-                    : "border-gray-200 hover:border-emerald-300"
+                    ? "border-blue-600 ring-2 ring-blue-400"
+                    : "border-gray-200 hover:border-blue-300"
                 }`}
               >
                 <img src={sample.url} alt={sample.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
@@ -402,7 +402,7 @@ export default function RequestCollectionForm({
                   <span className="text-[10px] text-white font-medium">{sample.name}</span>
                 </div>
                 {photoUrl === sample.url && (
-                  <div className="absolute top-1.5 right-1.5 bg-emerald-600 text-white rounded-full p-0.5">
+                  <div className="absolute top-1.5 right-1.5 bg-blue-600 text-white rounded-full p-0.5">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                   </div>
                 )}
@@ -417,13 +417,13 @@ export default function RequestCollectionForm({
         </div>
 
         {/* Price Suggestion Banner */}
-        <div className="bg-emerald-50 rounded-2xl p-5 border border-emerald-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="bg-blue-50 rounded-2xl p-5 border border-blue-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="space-y-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-800">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-blue-800">
               Estimated Baseline Price Range
             </span>
             <div className="flex items-baseline gap-2">
-              <span className="text-3xl font-black text-[#14532D]">
+              <span className="text-3xl font-black text-[#123B66]">
                 GH₵ {estimatedPrice}
               </span>
               <span className="text-xs text-gray-500">suggested starting quote</span>
@@ -436,7 +436,7 @@ export default function RequestCollectionForm({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full sm:w-auto px-6 py-3.5 bg-[#14532D] text-white font-bold rounded-xl shadow-md hover:bg-emerald-800 transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-50"
+            className="w-full sm:w-auto px-6 py-3.5 bg-[#123B66] text-white font-bold rounded-xl shadow-md hover:bg-blue-800 transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-50"
           >
             {isSubmitting ? (
               <span>Broadcasting to Tricycles...</span>

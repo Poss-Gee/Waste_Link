@@ -52,16 +52,16 @@ export default function DemoBanner() {
 
   return (
     <>
-      <aside aria-label="Prototype Evaluator Control Bar" className="bg-[#14532D] text-white text-xs border-b border-[#0e3b20] z-50 relative shadow-md">
+      <aside aria-label="Prototype Evaluator Control Bar" className="bg-[#123B66] text-white text-xs border-b border-[#0D2C4D] z-50 relative shadow-md">
         <div className="max-w-7xl mx-auto px-3 py-2 flex flex-wrap items-center justify-between gap-2">
           
           {/* Brand & Badge */}
           <div className="flex items-center gap-2">
             <span className="flex items-center gap-1.5 font-bold tracking-tight text-white text-sm">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse"></span>
               WasteLink Ghana
             </span>
-            <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-emerald-900/80 text-emerald-200 text-[11px] font-medium border border-emerald-700/50">
+            <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-blue-900/80 text-blue-200 text-[11px] font-medium border border-blue-700/50">
               Interactive Prototype
             </span>
           </div>
@@ -72,8 +72,8 @@ export default function DemoBanner() {
               onClick={() => switchRole("household")}
               className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-all font-medium ${
                 currentRole === "household"
-                  ? "bg-white text-[#14532D] shadow-sm font-semibold"
-                  : "text-emerald-100 hover:bg-white/10"
+                  ? "bg-white text-[#123B66] shadow-sm font-semibold"
+                  : "text-blue-100 hover:bg-white/10"
               }`}
             >
               <Users className="w-3.5 h-3.5" />
@@ -84,14 +84,14 @@ export default function DemoBanner() {
               onClick={() => switchRole("collector")}
               className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-all font-medium ${
                 currentRole === "collector"
-                  ? "bg-white text-[#14532D] shadow-sm font-semibold"
-                  : "text-emerald-100 hover:bg-white/10"
+                  ? "bg-white text-[#123B66] shadow-sm font-semibold"
+                  : "text-blue-100 hover:bg-white/10"
               }`}
             >
               <Truck className="w-3.5 h-3.5" />
               <span>Collector</span>
               {currentRole === "collector" && (
-                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
               )}
             </button>
 
@@ -99,8 +99,8 @@ export default function DemoBanner() {
               onClick={() => switchRole("admin")}
               className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-all font-medium ${
                 currentRole === "admin"
-                  ? "bg-white text-[#14532D] shadow-sm font-semibold"
-                  : "text-emerald-100 hover:bg-white/10"
+                  ? "bg-white text-[#123B66] shadow-sm font-semibold"
+                  : "text-blue-100 hover:bg-white/10"
               }`}
             >
               <ShieldCheck className="w-3.5 h-3.5" />
@@ -117,7 +117,7 @@ export default function DemoBanner() {
                 onClick={() => setShowUserDropdown(!showUserDropdown)}
                 className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 px-2 py-1 rounded border border-white/10 transition-colors"
               >
-                <div className="w-5 h-5 rounded-full overflow-hidden bg-emerald-700 flex-shrink-0">
+                <div className="w-5 h-5 rounded-full overflow-hidden bg-blue-700 flex-shrink-0">
                   {currentUser.avatar ? (
                     <img src={currentUser.avatar} alt={currentUser.name} className="w-full h-full object-cover" />
                   ) : (
@@ -126,16 +126,16 @@ export default function DemoBanner() {
                     </div>
                   )}
                 </div>
-                <span className="max-w-[110px] truncate font-medium text-emerald-100">
+                <span className="max-w-[110px] truncate font-medium text-blue-100">
                   {currentUser.name}
                 </span>
-                <ChevronDown className="w-3 h-3 text-emerald-300" />
+                <ChevronDown className="w-3 h-3 text-blue-300" />
               </button>
 
               {/* User selection menu */}
               {showUserDropdown && (
                 <div 
-                  className="absolute right-0 mt-1 w-64 bg-white text-[#17231B] rounded-lg shadow-xl border border-gray-200 py-2 z-50 animate-in fade-in slide-in-from-top-2"
+                  className="absolute left-0 lg:left-auto lg:right-0 mt-1.5 w-[min(17rem,calc(100vw-2.5rem))] bg-white text-[#172B43] rounded-xl shadow-2xl border border-gray-200 py-2 z-[70] animate-in fade-in slide-in-from-top-2"
                   onMouseLeave={() => setShowUserDropdown(false)}
                 >
                   <div className="px-3 py-1 text-[11px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100">
@@ -143,7 +143,7 @@ export default function DemoBanner() {
                   </div>
                   
                   <div className="max-h-60 overflow-y-auto py-1">
-                    <div className="px-3 py-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50">
+                    <div className="px-3 py-1 text-[10px] font-semibold text-blue-700 bg-blue-50">
                       Households
                     </div>
                     {households.slice(0, 5).map((h) => (
@@ -154,7 +154,7 @@ export default function DemoBanner() {
                           setShowUserDropdown(false);
                         }}
                         className={`w-full text-left px-3 py-1.5 flex items-center justify-between hover:bg-gray-100 text-xs ${
-                          currentUser.id === h.id ? "bg-emerald-50/80 font-bold text-emerald-800" : ""
+                          currentUser.id === h.id ? "bg-blue-50/80 font-bold text-blue-800" : ""
                         }`}
                       >
                         <span className="truncate">{h.name}</span>
@@ -162,7 +162,7 @@ export default function DemoBanner() {
                       </button>
                     ))}
 
-                    <div className="px-3 py-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 mt-1">
+                    <div className="px-3 py-1 text-[10px] font-semibold text-blue-700 bg-blue-50 mt-1">
                       Collectors (Tricycles)
                     </div>
                     {collectors.slice(0, 5).map((c) => (
@@ -173,7 +173,7 @@ export default function DemoBanner() {
                           setShowUserDropdown(false);
                         }}
                         className={`w-full text-left px-3 py-1.5 flex items-center justify-between hover:bg-gray-100 text-xs ${
-                          currentUser.id === c.id ? "bg-emerald-50/80 font-bold text-emerald-800" : ""
+                          currentUser.id === c.id ? "bg-blue-50/80 font-bold text-blue-800" : ""
                         }`}
                       >
                         <span className="truncate">{c.name.split(" ")[0]} ({c.tricycleModel.split(" ")[0]})</span>
@@ -183,7 +183,7 @@ export default function DemoBanner() {
                       </button>
                     ))}
 
-                    <div className="px-3 py-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 mt-1">
+                    <div className="px-3 py-1 text-[10px] font-semibold text-blue-700 bg-blue-50 mt-1">
                       Platform Admin
                     </div>
                     <button
@@ -192,7 +192,7 @@ export default function DemoBanner() {
                         setShowUserDropdown(false);
                       }}
                       className={`w-full text-left px-3 py-1.5 flex items-center justify-between hover:bg-gray-100 text-xs ${
-                        currentUser.id === admin.id ? "bg-emerald-50/80 font-bold text-emerald-800" : ""
+                        currentUser.id === admin.id ? "bg-blue-50/80 font-bold text-blue-800" : ""
                       }`}
                     >
                       <span>{admin.name}</span>
@@ -210,7 +210,7 @@ export default function DemoBanner() {
               className={`flex items-center gap-1 px-2 py-1 rounded transition-colors ${
                 isOfflineSimulated
                   ? "bg-amber-500 text-black font-bold animate-pulse"
-                  : "bg-white/10 hover:bg-white/20 text-emerald-200"
+                  : "bg-white/10 hover:bg-white/20 text-blue-200"
               }`}
             >
               {isOfflineSimulated ? (
@@ -253,7 +253,7 @@ export default function DemoBanner() {
             <button
               onClick={() => setShowHelpModal(true)}
               title="View Evaluator Scenario & Roles Guide"
-              className="p-1 rounded bg-white/10 hover:bg-white/20 text-emerald-200"
+              className="p-1 rounded bg-white/10 hover:bg-white/20 text-blue-200"
             >
               <Info className="w-3.5 h-3.5" />
             </button>
@@ -263,7 +263,7 @@ export default function DemoBanner() {
 
         {/* Reset Notification banner */}
         {resetNotice && (
-          <div className="bg-emerald-600 text-white text-center py-1 text-xs font-semibold flex items-center justify-center gap-1.5 animate-in slide-in-from-top duration-200">
+          <div className="bg-blue-600 text-white text-center py-1 text-xs font-semibold flex items-center justify-center gap-1.5 animate-in slide-in-from-top duration-200">
             <CheckCircle2 className="w-3.5 h-3.5" />
             Prototype state reset to clean Ghanaian sample dataset!
           </div>
@@ -273,10 +273,10 @@ export default function DemoBanner() {
       {/* Evaluator Guide Modal */}
       {showHelpModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-gray-200 text-[#17231B] animate-in zoom-in-95">
+          <div className="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-gray-200 text-[#172B43] animate-in zoom-in-95">
             <div className="flex items-center justify-between pb-4 border-b border-gray-100">
               <div className="flex items-center gap-2">
-                <div className="p-2 bg-emerald-100 text-emerald-800 rounded-lg">
+                <div className="p-2 bg-blue-100 text-blue-800 rounded-lg">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
@@ -293,8 +293,8 @@ export default function DemoBanner() {
             </div>
 
             <div className="mt-4 space-y-4 text-xs text-gray-600 max-h-[70vh] overflow-y-auto pr-1">
-              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-emerald-900">
-                <p className="font-semibold text-emerald-950 mb-1">🎯 Complete End-to-End Test Workflow:</p>
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 text-blue-900">
+                <p className="font-semibold text-blue-950 mb-1">🎯 Complete End-to-End Test Workflow:</p>
                 <ol className="list-decimal pl-4 space-y-1">
                   <li><strong>Household:</strong> Switch to Household. View active negotiation for Request #req-101. Propose counteroffer or accept Kofi Mensah&apos;s GH₵55 proposal!</li>
                   <li><strong>Collector:</strong> Switch to Collector. View &quot;Accepted Jobs&quot; or &quot;Incoming Requests&quot;. Propose a price in GH₵ or update collection progress (En Route &rarr; Arrived &rarr; Completed).</li>
@@ -307,21 +307,21 @@ export default function DemoBanner() {
               <div className="grid grid-cols-3 gap-2 text-[11px]">
                 <div className="p-2.5 bg-gray-50 rounded-lg border border-gray-200">
                   <div className="font-bold text-gray-800 flex items-center gap-1 mb-1">
-                    <Users className="w-3.5 h-3.5 text-emerald-600" /> Household
+                    <Users className="w-3.5 h-3.5 text-blue-600" /> Household
                   </div>
                   <p className="text-gray-500">Akosua Mensah (East Legon), Kwame Osei (Madina), + 8 more accounts.</p>
                 </div>
 
                 <div className="p-2.5 bg-gray-50 rounded-lg border border-gray-200">
                   <div className="font-bold text-gray-800 flex items-center gap-1 mb-1">
-                    <Truck className="w-3.5 h-3.5 text-emerald-600" /> Collector
+                    <Truck className="w-3.5 h-3.5 text-blue-600" /> Collector
                   </div>
                   <p className="text-gray-500">Kofi Mensah (Speedy Kofi), Kwesi Appiah, Ibrahim Tanko + 5 more.</p>
                 </div>
 
                 <div className="p-2.5 bg-gray-50 rounded-lg border border-gray-200">
                   <div className="font-bold text-gray-800 flex items-center gap-1 mb-1">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> Admin
+                    <ShieldCheck className="w-3.5 h-3.5 text-blue-600" /> Admin
                   </div>
                   <p className="text-gray-500">Dr. Kwabena Asare (Chief Platform Coordinator).</p>
                 </div>
@@ -331,7 +331,7 @@ export default function DemoBanner() {
             <div className="mt-5 pt-3 border-t border-gray-100 flex justify-end">
               <button
                 onClick={() => setShowHelpModal(false)}
-                className="px-4 py-2 bg-[#14532D] text-white rounded-lg text-xs font-semibold hover:bg-emerald-800 transition-colors"
+                className="px-4 py-2 bg-[#123B66] text-white rounded-lg text-xs font-semibold hover:bg-blue-800 transition-colors"
               >
                 Close & Continue Exploring
               </button>

@@ -1,23 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { useWasteApp } from "@/context/WasteAppContext";
 import {
-  Recycle,
   Bell,
-  CheckCircle,
-  PlusCircle,
-  Search,
-  Clock,
-  DollarSign,
-  ShieldCheck,
-  AlertTriangle,
   Menu,
   X,
-  MapPin,
-  ChevronRight,
-  TrendingUp,
+  ChevronDown,
+  UserPlus,
+  Globe,
+  LogOut,
+  ShieldCheck,
+  Truck,
+  Users,
 } from "lucide-react";
 
 interface NavItem {
@@ -42,15 +37,14 @@ export default function Navbar({ currentTab, onTabChange }: NavbarProps) {
   } = useWasteApp();
 
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Filter unread notifications
   const userNotifications = notifications.filter(
     (n) => n.userId === currentUser.id || n.role === currentRole || n.role === "all"
   );
   const unreadCount = userNotifications.filter((n) => !n.read).length;
 
-  // Active collection count for household or collector
   const activeJobsCount = requests.filter(
     (r) =>
       r.status !== "paid" &&
@@ -60,31 +54,30 @@ export default function Navbar({ currentTab, onTabChange }: NavbarProps) {
 
   const getHouseholdNav = (): NavItem[] => [
     { id: "dashboard", label: "Dashboard" },
-    { id: "request", label: "Request Rubbish Pickup" },
-    { id: "nearby", label: "Nearby Tricycles" },
-    { id: "tracking", label: "Live Tracking & Offers", badge: activeJobsCount > 0 ? activeJobsCount : undefined },
-    { id: "history", label: "Collection History" },
-    { id: "complaints", label: "Support & Disputes" },
+    { id: "request", label: "Request Pickup" },
+    { id: "nearby", label: "Nearby Collectors" },
+    { id: "tracking", label: "Tracking & Offers", badge: activeJobsCount > 0 ? activeJobsCount : undefined },
+    { id: "history", label: "History" },
+    { id: "complaints", label: "Support" },
   ];
 
   const getCollectorNav = (): NavItem[] => [
     { id: "dashboard", label: "Collector Hub" },
     { id: "requests", label: "Incoming Requests" },
-    { id: "jobs", label: "Active Job & Route", badge: activeJobsCount > 0 ? activeJobsCount : undefined },
+    { id: "jobs", label: "Active Job", badge: activeJobsCount > 0 ? activeJobsCount : undefined },
     { id: "earnings", label: "Earnings (GH₵)" },
-    { id: "history", label: "Job History" },
-    { id: "verification", label: "Verification Status" },
+    { id: "verification", label: "Verification" },
   ];
 
   const getAdminNav = (): NavItem[] => [
     { id: "overview", label: "Overview" },
     { id: "verifications", label: "Verification Queue" },
-    { id: "collections", label: "Collection Requests" },
-    { id: "collectors", label: "Tricycle Operators" },
+    { id: "collections", label: "Collections" },
+    { id: "collectors", label: "Operators" },
     { id: "households", label: "Households" },
-    { id: "payments", label: "Payments & MoMo" },
+    { id: "payments", label: "Payments" },
     { id: "disputes", label: "Disputes" },
-    { id: "analytics", label: "Reports & Logs" },
+    { id: "analytics", label: "Reports" },
   ];
 
   const navItems =
@@ -94,48 +87,84 @@ export default function Navbar({ currentTab, onTabChange }: NavbarProps) {
       ? getCollectorNav()
       : getAdminNav();
 
+  const roleBadgeLabel =
+    currentRole === "household"
+      ? "Household"
+      : currentRole === "collector"
+      ? "Collector"
+      : "Admin";
+
+  const RoleIcon =
+    currentRole === "household" ? Users : currentRole === "collector" ? Truck : ShieldCheck;
+
   return (
-    <header className="bg-white border-b border-[#E5EAE4] sticky top-0 z-40 shadow-xs">
+    <header className="bg-white border-b border-[#E2E8F0] sticky top-0 z-40 shadow-subtle">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16">
-          
-          {/* Brand Logo & Slogan */}
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between h-16 gap-3">
+          {/* Brand Logo: compact symbol on mobile, full logo on desktop */}
+          <div className="flex items-center gap-2.5 shrink-0">
             <button
+              type="button"
               onClick={() => onTabChange(currentRole === "admin" ? "overview" : "dashboard")}
-              className="flex items-center gap-2.5 text-left group shrink-0"
+              className="flex items-center gap-2 text-left focus:outline-hidden"
+              aria-label="WasteLink Ghana Home"
             >
+              <div className="flex items-center gap-2 sm:hidden">
+                <img
+                  src="/logo-symbol.png"
+                  alt="WasteLink Ghana"
+                  className="h-9 w-auto object-contain shrink-0"
+                />
+                <div className="leading-none">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-sm font-black tracking-tight text-[#1D4ED8]">
+                      WasteLink
+                    </span>
+                    <span className="text-sm font-black tracking-tight text-[#0284C7]">
+                      Ghana
+                    </span>
+                  </div>
+                  <div className="h-[1.5px] w-full bg-gradient-to-r from-[#2563EB] to-[#0EA5E9] rounded-full my-0.5" />
+                  <p className="text-[8px] font-semibold italic text-[#123B66] tracking-tight leading-tight max-w-[155px] truncate">
+                    Connecting Homes. Empowering Collectors. Cleaner Communities.
+                  </p>
+                </div>
+              </div>
               <img
                 src="/logo.png"
-                alt="WasteLink Ghana — Connecting Homes. Empowering Collectors. Cleaner Communities."
-                className="h-10 sm:h-11 w-auto object-contain"
+                alt="WasteLink Ghana"
+                className="hidden sm:block h-10 w-auto object-contain"
               />
             </button>
 
-            {/* Role indicator pill */}
-            <span className="hidden md:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 ml-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
-              {currentRole === "household" ? "Household Portal" : currentRole === "collector" ? "Collector Hub" : "Admin Console"}
+            <span className="hidden min-[460px]:inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#DBEAFE] text-[#123B66] border border-[#BFDBFE]">
+              <RoleIcon className="w-3.5 h-3.5 text-[#2563EB]" />
+              <span>{roleBadgeLabel}</span>
             </span>
           </div>
 
-          {/* Desktop Nav Items */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Role-Specific Navigation */}
+          <nav className="hidden lg:flex items-center gap-1" aria-label="Primary Navigation">
             {navItems.map((item) => (
               <button
                 key={item.id}
+                type="button"
                 onClick={() => onTabChange(item.id)}
-                className={`px-3 py-2 rounded-lg text-xs font-medium transition-all relative ${
+                className={`px-3 py-2 rounded-xl text-xs font-semibold transition-all relative whitespace-nowrap ${
                   currentTab === item.id
-                    ? "bg-[#14532D] text-white shadow-xs font-semibold"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100/70"
+                    ? "bg-[#123B66] text-white shadow-xs"
+                    : "text-[#64748B] hover:text-[#172B43] hover:bg-[#F5F8FC]"
                 }`}
               >
                 {item.label}
                 {item.badge && (
-                  <span className={`ml-1.5 px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
-                    currentTab === item.id ? "bg-emerald-400 text-black" : "bg-emerald-600 text-white"
-                  }`}>
+                  <span
+                    className={`ml-1.5 px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
+                      currentTab === item.id
+                        ? "bg-[#2563EB] text-white"
+                        : "bg-[#DBEAFE] text-[#123B66]"
+                    }`}
+                  >
                     {item.badge}
                   </span>
                 )}
@@ -143,48 +172,51 @@ export default function Navbar({ currentTab, onTabChange }: NavbarProps) {
             ))}
           </nav>
 
-          {/* Right Action Icons: Notifications & User Avatar */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            
-            {/* Notifications Menu */}
+          {/* Right: Notification Centre + Profile Dropdown + Mobile Drawer */}
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
+            {/* Notification Centre */}
             <div className="relative">
               <button
-                onClick={() => setShowNotifications(!showNotifications)}
-                className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 relative focus:outline-hidden"
+                type="button"
+                onClick={() => {
+                  setShowNotifications(!showNotifications);
+                  setShowProfileMenu(false);
+                }}
+                className="p-2 rounded-xl text-[#64748B] hover:text-[#123B66] hover:bg-[#F5F8FC] relative transition-colors"
                 aria-label="Notifications"
               >
                 <Bell className="w-5 h-5" />
                 {unreadCount > 0 && (
-                  <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center animate-bounce">
+                  <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#2563EB] text-white text-[10px] font-bold flex items-center justify-center">
                     {unreadCount}
                   </span>
                 )}
               </button>
 
-              {/* Notification Popover */}
               {showNotifications && (
-                <div 
-                  className="absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 py-3 z-50 animate-in fade-in slide-in-from-top-2"
+                <div
+                  className="absolute right-0 mt-2 w-[min(22rem,calc(100vw-2rem))] sm:w-96 bg-white rounded-2xl shadow-2xl border border-[#E2E8F0] py-3 z-50 animate-in fade-in slide-in-from-top-2"
                   onMouseLeave={() => setShowNotifications(false)}
                 >
-                  <div className="px-4 pb-2 border-b border-gray-100 flex items-center justify-between">
+                  <div className="px-4 pb-2 border-b border-[#F1F5F9] flex items-center justify-between">
                     <div>
-                      <h4 className="font-bold text-gray-900 text-sm">Notifications</h4>
-                      <p className="text-[11px] text-gray-500">{unreadCount} unread alert(s)</p>
+                      <h4 className="font-bold text-[#172B43] text-sm">Notifications</h4>
+                      <p className="text-[11px] text-[#64748B]">{unreadCount} unread alert(s)</p>
                     </div>
                     {unreadCount > 0 && (
                       <button
+                        type="button"
                         onClick={markAllNotificationsRead}
-                        className="text-xs text-emerald-700 hover:text-emerald-900 font-semibold"
+                        className="text-xs text-[#2563EB] hover:text-[#123B66] font-semibold"
                       >
                         Mark all as read
                       </button>
                     )}
                   </div>
 
-                  <div className="max-h-80 overflow-y-auto divide-y divide-gray-100">
+                  <div className="max-h-80 overflow-y-auto divide-y divide-[#F1F5F9]">
                     {userNotifications.length === 0 ? (
-                      <div className="p-6 text-center text-gray-400 text-xs">
+                      <div className="p-6 text-center text-[#64748B] text-xs">
                         No notifications yet.
                       </div>
                     ) : (
@@ -206,18 +238,23 @@ export default function Navbar({ currentTab, onTabChange }: NavbarProps) {
                               setShowNotifications(false);
                             }
                           }}
-                          className={`p-3 text-xs hover:bg-gray-50 cursor-pointer transition-colors flex items-start gap-2.5 ${
-                            !notif.read ? "bg-emerald-50/50" : ""
+                          className={`p-3 text-xs hover:bg-[#F5F8FC] cursor-pointer transition-colors flex items-start gap-2.5 ${
+                            !notif.read ? "bg-[#DBEAFE]/40" : ""
                           }`}
                         >
-                          <div className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${
-                            !notif.read ? "bg-emerald-600" : "bg-gray-300"
-                          }`} />
+                          <div
+                            className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${
+                              !notif.read ? "bg-[#2563EB]" : "bg-[#CBD5E1]"
+                            }`}
+                          />
                           <div className="flex-1">
-                            <p className="font-semibold text-gray-900">{notif.title}</p>
-                            <p className="text-gray-600 text-[11px] mt-0.5">{notif.message}</p>
-                            <span className="text-[10px] text-gray-400 mt-1 block">
-                              {new Date(notif.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            <p className="font-semibold text-[#172B43]">{notif.title}</p>
+                            <p className="text-[#64748B] text-[11px] mt-0.5">{notif.message}</p>
+                            <span className="text-[10px] text-[#94A3B8] mt-1 block">
+                              {new Date(notif.createdAt).toLocaleTimeString([], {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })}
                             </span>
                           </div>
                         </div>
@@ -228,46 +265,114 @@ export default function Navbar({ currentTab, onTabChange }: NavbarProps) {
               )}
             </div>
 
-            {/* User Pill */}
-            <div className="flex items-center gap-2 pl-2 border-l border-gray-200">
-              <div className="w-8 h-8 rounded-full overflow-hidden bg-emerald-100 border border-emerald-300 flex-shrink-0">
-                {currentUser.avatar ? (
-                  <img src={currentUser.avatar} alt={currentUser.name} className="w-full h-full object-cover" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center font-bold text-xs text-emerald-800">
-                    {currentUser.name.charAt(0)}
+            {/* Profile Dropdown */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowProfileMenu(!showProfileMenu);
+                  setShowNotifications(false);
+                }}
+                className="flex items-center gap-2 pl-2 pr-2.5 py-1.5 rounded-xl border border-[#E2E8F0] hover:border-[#2563EB]/50 hover:bg-[#F5F8FC] transition-colors"
+                aria-expanded={showProfileMenu}
+                aria-label="User Profile Menu"
+              >
+                <div className="w-7 h-7 rounded-full overflow-hidden bg-[#DBEAFE] border border-[#BFDBFE] flex-shrink-0">
+                  {currentUser.avatar ? (
+                    <img
+                      src={currentUser.avatar}
+                      alt={currentUser.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center font-bold text-xs text-[#123B66]">
+                      {currentUser.name.charAt(0)}
+                    </div>
+                  )}
+                </div>
+                <div className="hidden sm:block text-left">
+                  <span className="text-xs font-bold text-[#172B43] block leading-tight truncate max-w-[110px]">
+                    {currentUser.name.split(" ")[0]}
+                  </span>
+                  <span className="text-[10px] text-[#64748B] block leading-tight truncate max-w-[110px]">
+                    {currentUser.location}
+                  </span>
+                </div>
+                <ChevronDown className="w-3.5 h-3.5 text-[#64748B] hidden sm:block" />
+              </button>
+
+              {showProfileMenu && (
+                <div
+                  className="absolute right-0 mt-2 w-60 bg-white rounded-2xl shadow-2xl border border-[#E2E8F0] py-2 z-50 animate-in fade-in slide-in-from-top-2"
+                  onMouseLeave={() => setShowProfileMenu(false)}
+                >
+                  <div className="px-4 py-2 border-b border-[#F1F5F9]">
+                    <p className="text-xs font-bold text-[#172B43] truncate">{currentUser.name}</p>
+                    <p className="text-[11px] text-[#64748B] truncate">{currentUser.phone}</p>
                   </div>
-                )}
-              </div>
-              <div className="hidden sm:block text-left">
-                <span className="text-xs font-bold text-gray-800 block leading-tight truncate max-w-[120px]">
-                  {currentUser.name.split(" ")[0]}
-                </span>
-                <span className="text-[10px] text-gray-500 block leading-tight truncate max-w-[120px]">
-                  {currentUser.location}
-                </span>
-              </div>
+
+                  <div className="py-1 text-xs">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        onTabChange("auth");
+                        setShowProfileMenu(false);
+                      }}
+                      className="w-full text-left px-4 py-2 text-[#172B43] hover:bg-[#F5F8FC] flex items-center gap-2 font-medium"
+                    >
+                      <UserPlus className="w-4 h-4 text-[#2563EB]" />
+                      <span>Sign Up / Switch Account</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        onTabChange("landing");
+                        setShowProfileMenu(false);
+                      }}
+                      className="w-full text-left px-4 py-2 text-[#172B43] hover:bg-[#F5F8FC] flex items-center gap-2 font-medium"
+                    >
+                      <Globe className="w-4 h-4 text-[#2563EB]" />
+                      <span>Public Landing Page</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        onTabChange("auth");
+                        setShowProfileMenu(false);
+                      }}
+                      className="w-full text-left px-4 py-2 text-rose-600 hover:bg-rose-50 flex items-center gap-2 font-medium border-t border-[#F1F5F9] mt-1 pt-2"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span>Sign Out</span>
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Mobile Hamburger Button */}
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 lg:hidden focus:outline-hidden"
-              aria-label="Toggle menu"
+              className="p-2 rounded-xl text-[#64748B] hover:bg-[#F5F8FC] lg:hidden"
+              aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
-
         </div>
       </div>
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-gray-100 bg-white px-4 pt-3 pb-6 space-y-1 shadow-lg">
-          <div className="px-2 py-1.5 mb-2 bg-emerald-50 rounded-lg text-xs font-semibold text-emerald-800 flex items-center justify-between">
-            <span>{currentUser.name} ({currentRole.toUpperCase()})</span>
-            <span className="text-[10px] text-emerald-700 bg-white px-2 py-0.5 rounded border border-emerald-200">
+        <div className="lg:hidden border-t border-[#E2E8F0] bg-white px-4 pt-3 pb-6 space-y-1 shadow-lg">
+          <div className="px-3 py-2 mb-2 bg-[#F5F8FC] border border-[#E2E8F0] rounded-xl text-xs font-semibold text-[#123B66] flex items-center justify-between">
+            <span>
+              {currentUser.name} ({roleBadgeLabel})
+            </span>
+            <span className="text-[10px] text-[#2563EB] bg-white px-2 py-0.5 rounded-full border border-[#DBEAFE]">
               {currentUser.location}
             </span>
           </div>
@@ -275,24 +380,48 @@ export default function Navbar({ currentTab, onTabChange }: NavbarProps) {
           {navItems.map((item) => (
             <button
               key={item.id}
+              type="button"
               onClick={() => {
                 onTabChange(item.id);
                 setMobileMenuOpen(false);
               }}
-              className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium flex items-center justify-between ${
+              className={`w-full text-left px-3 py-2.5 rounded-xl text-sm font-medium flex items-center justify-between ${
                 currentTab === item.id
-                  ? "bg-[#14532D] text-white font-semibold"
-                  : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-[#123B66] text-white font-semibold"
+                  : "text-[#172B43] hover:bg-[#F5F8FC]"
               }`}
             >
               <span>{item.label}</span>
               {item.badge && (
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-500 text-white">
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-[#2563EB] text-white">
                   {item.badge}
                 </span>
               )}
             </button>
           ))}
+
+          <div className="pt-2 mt-2 border-t border-[#E2E8F0] grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                onTabChange("auth");
+                setMobileMenuOpen(false);
+              }}
+              className="px-3 py-2.5 rounded-xl text-xs font-bold text-[#123B66] bg-[#DBEAFE] hover:bg-[#BFDBFE] text-center"
+            >
+              Sign Up / Login
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                onTabChange("landing");
+                setMobileMenuOpen(false);
+              }}
+              className="px-3 py-2.5 rounded-xl text-xs font-bold text-[#172B43] bg-[#F5F8FC] border border-[#E2E8F0] text-center"
+            >
+              Landing Page
+            </button>
+          </div>
         </div>
       )}
     </header>

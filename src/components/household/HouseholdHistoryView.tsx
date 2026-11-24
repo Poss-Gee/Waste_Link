@@ -65,7 +65,7 @@ export default function HouseholdHistoryView({ onOpenTracker }: HouseholdHistory
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by ID, waste type, or collector..."
-              className="w-full text-xs pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+              className="w-full text-xs pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
             />
           </div>
 
@@ -76,7 +76,7 @@ export default function HouseholdHistoryView({ onOpenTracker }: HouseholdHistory
                 onClick={() => setStatusFilter(st)}
                 className={`text-xs px-3 py-2 rounded-xl capitalize font-semibold transition-all ${
                   statusFilter === st
-                    ? "bg-[#14532D] text-white shadow-xs"
+                    ? "bg-[#123B66] text-white shadow-xs"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
@@ -102,7 +102,7 @@ export default function HouseholdHistoryView({ onOpenTracker }: HouseholdHistory
             return (
               <div
                 key={req.id}
-                className="bg-white rounded-2xl p-5 border border-gray-200 shadow-xs hover:border-emerald-200 transition-all space-y-3"
+                className="bg-white rounded-2xl p-5 border border-gray-200 shadow-xs hover:border-blue-200 transition-all space-y-3"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-gray-100">
                   <div className="flex items-center gap-2">
@@ -111,7 +111,7 @@ export default function HouseholdHistoryView({ onOpenTracker }: HouseholdHistory
                     <span
                       className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
                         isCompleted
-                          ? "bg-emerald-100 text-emerald-800"
+                          ? "bg-blue-100 text-blue-800"
                           : isCancelled
                           ? "bg-rose-100 text-rose-800"
                           : "bg-amber-100 text-amber-800"
@@ -149,7 +149,7 @@ export default function HouseholdHistoryView({ onOpenTracker }: HouseholdHistory
 
                   <div className="text-left md:text-right">
                     <span className="text-gray-400 block text-[11px]">Total Paid</span>
-                    <p className="text-base font-black text-[#14532D]">
+                    <p className="text-base font-black text-[#123B66]">
                       GH₵ {(req.agreedPrice || req.initialEstimatedPrice || 45).toFixed(2)}
                     </p>
                     <p className="text-[11px] text-gray-500 capitalize">
@@ -174,7 +174,7 @@ export default function HouseholdHistoryView({ onOpenTracker }: HouseholdHistory
                   {isActive && (
                     <button
                       onClick={() => onOpenTracker(req.id)}
-                      className="px-3.5 py-1.5 bg-[#14532D] text-white rounded-lg text-xs font-semibold hover:bg-emerald-800 transition-colors"
+                      className="px-3.5 py-1.5 bg-[#123B66] text-white rounded-lg text-xs font-semibold hover:bg-blue-800 transition-colors"
                     >
                       Track Active Collection
                     </button>
@@ -183,7 +183,7 @@ export default function HouseholdHistoryView({ onOpenTracker }: HouseholdHistory
                   {isCompleted && (
                     <button
                       onClick={() => setSelectedReceipt(req)}
-                      className="px-3 py-1.5 bg-gray-100 hover:bg-emerald-50 hover:text-emerald-800 text-gray-700 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5"
+                      className="px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-800 text-gray-700 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5"
                     >
                       <Printer className="w-3.5 h-3.5" />
                       <span>View Official Receipt</span>

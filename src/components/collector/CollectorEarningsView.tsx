@@ -51,9 +51,9 @@ export default function CollectorEarningsView() {
           </p>
         </div>
 
-        <div className="bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-100 text-right">
-          <span className="text-[10px] text-emerald-800 uppercase font-semibold block">Total Revenue</span>
-          <span className="text-xl font-black text-[#14532D]">
+        <div className="bg-blue-50 px-4 py-2 rounded-xl border border-blue-100 text-right">
+          <span className="text-[10px] text-blue-800 uppercase font-semibold block">Total Revenue</span>
+          <span className="text-xl font-black text-[#123B66]">
             GH₵ {collector.earnings.total.toFixed(2)}
           </span>
         </div>
@@ -64,7 +64,7 @@ export default function CollectorEarningsView() {
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-500 font-medium">Today</span>
-            <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg">
+            <div className="p-2 bg-blue-50 text-blue-700 rounded-lg">
               <Coins className="w-4 h-4" />
             </div>
           </div>
@@ -77,20 +77,20 @@ export default function CollectorEarningsView() {
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-500 font-medium">This Week</span>
-            <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg">
+            <div className="p-2 bg-blue-50 text-blue-700 rounded-lg">
               <Calendar className="w-4 h-4" />
             </div>
           </div>
-          <div className="mt-2 text-2xl font-black text-[#14532D]">
+          <div className="mt-2 text-2xl font-black text-[#123B66]">
             GH₵ {collector.earnings.thisWeek.toFixed(2)}
           </div>
-          <span className="text-[11px] text-emerald-700 font-medium">Past 7 days</span>
+          <span className="text-[11px] text-blue-700 font-medium">Past 7 days</span>
         </div>
 
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-500 font-medium">Cash Collected</span>
-            <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg">
+            <div className="p-2 bg-blue-50 text-blue-700 rounded-lg">
               <Banknote className="w-4 h-4" />
             </div>
           </div>
@@ -103,14 +103,14 @@ export default function CollectorEarningsView() {
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-500 font-medium">Mobile Money</span>
-            <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg">
+            <div className="p-2 bg-blue-50 text-blue-700 rounded-lg">
               <CreditCard className="w-4 h-4" />
             </div>
           </div>
           <div className="mt-2 text-2xl font-black text-gray-900">
             GH₵ {momoTotal.toFixed(2)}
           </div>
-          <span className="text-[11px] text-emerald-600 font-medium">MTN / Telecel wallet</span>
+          <span className="text-[11px] text-blue-600 font-medium">MTN / Telecel wallet</span>
         </div>
       </div>
 
@@ -127,7 +127,7 @@ export default function CollectorEarningsView() {
                 onClick={() => setFilterMethod(m)}
                 className={`text-xs px-3 py-1.5 rounded-lg capitalize font-semibold transition-all ${
                   filterMethod === m
-                    ? "bg-[#14532D] text-white"
+                    ? "bg-[#123B66] text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
@@ -154,7 +154,7 @@ export default function CollectorEarningsView() {
                       {job.receiptNumber || `REC-GH-${job.id.slice(-4)}`}
                     </span>
                     <span className="text-xs font-bold text-gray-900">{job.householdName}</span>
-                    <span className="text-[10px] text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full font-semibold">
+                    <span className="text-[10px] text-blue-800 bg-blue-50 px-2 py-0.5 rounded-full font-semibold">
                       {job.area}
                     </span>
                   </div>
@@ -168,7 +168,7 @@ export default function CollectorEarningsView() {
                 </div>
 
                 <div className="text-left sm:text-right">
-                  <span className="text-base font-black text-[#14532D] block">
+                  <span className="text-base font-black text-[#123B66] block">
                     + GH₵ {(job.agreedPrice || job.initialEstimatedPrice || 45).toFixed(2)}
                   </span>
                   <span className="text-[10px] text-gray-400 capitalize">

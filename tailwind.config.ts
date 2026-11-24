@@ -9,52 +9,48 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        forest: {
-          DEFAULT: "#14532D",
-          50: "#f0fdf4",
-          100: "#dcfce7",
-          200: "#bbf7d0",
-          300: "#86efac",
-          400: "#4ade80",
-          500: "#22c55e",
-          600: "#16a34a",
-          700: "#15803d",
-          800: "#166534",
-          900: "#14532D",
-          950: "#052e16",
+        navy: {
+          DEFAULT: "#123B66",
+          50: "#F5F8FC",
+          100: "#DBEAFE",
+          200: "#BFDBFE",
+          600: "#2563EB",
+          700: "#1D4ED8",
+          800: "#1E40AF",
+          900: "#123B66",
         },
-        eco: {
-          DEFAULT: "#16A34A",
-          light: "#DCFCE7",
-          dark: "#14532D",
+        brand: {
+          DEFAULT: "#2563EB",
+          navy: "#123B66",
+          light: "#DBEAFE",
+          pale: "#F5F8FC",
         },
         surface: {
           DEFAULT: "#FFFFFF",
-          muted: "#F7F9F5",
+          muted: "#F5F8FC",
           elevated: "#FFFFFF",
         },
         ink: {
-          DEFAULT: "#17231B",
-          muted: "#647067",
-          subtle: "#94A399",
+          DEFAULT: "#172B43",
+          muted: "#64748B",
+          subtle: "#94A3B8",
         },
         border: {
-          DEFAULT: "#E5EAE4",
-          light: "#F0F4EF",
-          strong: "#CBD5CD",
+          DEFAULT: "#E2E8F0",
+          light: "#F1F5F9",
+          strong: "#CBD5E1",
         },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
       },
       boxShadow: {
-        subtle: "0 1px 3px 0 rgba(20, 83, 45, 0.05), 0 1px 2px -1px rgba(20, 83, 45, 0.05)",
-        card: "0 4px 6px -1px rgba(20, 83, 45, 0.05), 0 2px 4px -2px rgba(20, 83, 45, 0.05)",
-        floating: "0 10px 25px -5px rgba(20, 83, 45, 0.1), 0 8px 10px -6px rgba(20, 83, 45, 0.08)",
+        subtle: "0 1px 3px 0 rgba(18, 59, 102, 0.05), 0 1px 2px -1px rgba(18, 59, 102, 0.05)",
+        card: "0 4px 6px -1px rgba(18, 59, 102, 0.05), 0 2px 4px -2px rgba(18, 59, 102, 0.05)",
+        floating: "0 10px 25px -5px rgba(18, 59, 102, 0.1), 0 8px 10px -6px rgba(18, 59, 102, 0.08)",
       },
     },
   },
   plugins: [],
 };
 export default config;
-

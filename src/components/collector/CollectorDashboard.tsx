@@ -63,17 +63,17 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
       {/* Top Banner with Online/Offline Big Switch (One-handed mobile friendly) */}
       <div className={`rounded-2xl p-6 text-white shadow-card transition-all ${
         collector.isOnline
-          ? "bg-gradient-to-r from-[#14532D] via-[#166534] to-[#15803D]"
+          ? "bg-gradient-to-r from-[#123B66] via-[#1E40AF] to-[#1D4ED8]"
           : "bg-gradient-to-r from-gray-800 to-gray-700"
       }`}>
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="font-mono text-xs uppercase tracking-wider text-emerald-200">
+              <span className="font-mono text-xs uppercase tracking-wider text-blue-200">
                 Tricycle Operator Hub &bull; {collector.tricycleRegNumber}
               </span>
               {collector.isVerified && (
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/30 text-emerald-200 text-[10px] font-bold border border-emerald-400/40">
+                <span className="px-2 py-0.5 rounded-full bg-blue-500/30 text-blue-200 text-[10px] font-bold border border-blue-400/40">
                   ✓ Verified
                 </span>
               )}
@@ -81,7 +81,7 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
             <h1 className="text-2xl sm:text-3xl font-black text-white">
               {collector.name}
             </h1>
-            <p className="text-xs text-emerald-100 flex items-center gap-2">
+            <p className="text-xs text-blue-100 flex items-center gap-2">
               <span>{collector.tricycleModel}</span>
               <span>&bull;</span>
               <span>{collector.location}</span>
@@ -93,8 +93,8 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
             onClick={() => toggleCollectorOnline(collector.id)}
             className={`w-full sm:w-auto px-6 py-3.5 rounded-2xl font-bold text-sm shadow-lg transition-all flex items-center justify-center gap-2.5 ${
               collector.isOnline
-                ? "bg-white text-[#14532D] hover:bg-emerald-50"
-                : "bg-emerald-500 text-white hover:bg-emerald-600 animate-pulse"
+                ? "bg-white text-[#123B66] hover:bg-blue-50"
+                : "bg-blue-500 text-white hover:bg-blue-600 animate-pulse"
             }`}
           >
             <Power className="w-5 h-5" />
@@ -110,14 +110,14 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-500 font-medium">Today&apos;s Earnings</span>
-            <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg">
+            <div className="p-2 bg-blue-50 text-blue-700 rounded-lg">
               <Coins className="w-4 h-4" />
             </div>
           </div>
-          <div className="mt-2 text-2xl font-black text-[#14532D]">
+          <div className="mt-2 text-2xl font-black text-[#123B66]">
             GH₵ {collector.earnings.today}
           </div>
-          <span className="text-[11px] text-emerald-700 font-medium">
+          <span className="text-[11px] text-blue-700 font-medium">
             This Week: GH₵ {collector.earnings.thisWeek}
           </span>
         </div>
@@ -125,7 +125,7 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-500 font-medium">Completed Pickups</span>
-            <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg">
+            <div className="p-2 bg-blue-50 text-blue-700 rounded-lg">
               <CheckCircle2 className="w-4 h-4" />
             </div>
           </div>
@@ -166,15 +166,15 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
 
       {/* ACTIVE JOB CARD (Immediate Action Center) */}
       {activeJob && (
-        <div className="bg-white rounded-2xl p-6 border-2 border-[#16A34A] shadow-card space-y-4 animate-in fade-in">
+        <div className="bg-white rounded-2xl p-6 border-2 border-[#2563EB] shadow-card space-y-4 animate-in fade-in">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-gray-100">
             <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
-              <span className="font-bold text-xs uppercase tracking-wider text-emerald-800">
+              <span className="w-3 h-3 rounded-full bg-blue-500 animate-ping"></span>
+              <span className="font-bold text-xs uppercase tracking-wider text-blue-800">
                 Active Job In Progress &bull; #{activeJob.id}
               </span>
             </div>
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#14532D] text-white self-start sm:self-auto capitalize">
+            <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#123B66] text-white self-start sm:self-auto capitalize">
               {activeJob.status.replace(/_/g, " ")}
             </span>
           </div>
@@ -184,7 +184,7 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
               <span className="text-gray-400 text-xs block">Customer &amp; Location</span>
               <h4 className="font-bold text-gray-900 text-sm mt-0.5">{activeJob.householdName}</h4>
               <p className="text-xs text-gray-600 flex items-center gap-1 mt-0.5">
-                <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+                <MapPin className="w-3.5 h-3.5 text-blue-600" />
                 {activeJob.address}, {activeJob.area}
               </p>
               <p className="text-[11px] text-gray-500 mt-0.5">Near: {activeJob.landmark}</p>
@@ -204,14 +204,14 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
             <div className="flex flex-col justify-between items-start md:items-end">
               <div>
                 <span className="text-gray-400 text-xs block md:text-right">Agreed Earnings</span>
-                <span className="text-2xl font-black text-[#14532D]">
+                <span className="text-2xl font-black text-[#123B66]">
                   GH₵ {activeJob.agreedPrice || activeJob.initialEstimatedPrice || 45}
                 </span>
               </div>
 
               <button
                 onClick={() => onNavigate("jobs", activeJob.id)}
-                className="w-full md:w-auto mt-2 px-5 py-2.5 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                className="w-full md:w-auto mt-2 px-5 py-2.5 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
               >
                 <span>Open Job Execution &amp; Navigation</span>
                 <ArrowRight className="w-4 h-4" />
@@ -228,12 +228,12 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
         <div className="lg:col-span-2 bg-white rounded-2xl p-5 border border-gray-200 shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-gray-900 text-sm flex items-center gap-2">
-              <Clock className="w-4 h-4 text-emerald-600" />
+              <Clock className="w-4 h-4 text-blue-600" />
               Incoming Requests in Your Zone ({incomingRequests.length})
             </h3>
             <button
               onClick={() => onNavigate("requests")}
-              className="text-xs font-semibold text-emerald-700 hover:text-emerald-900"
+              className="text-xs font-semibold text-blue-700 hover:text-blue-900"
             >
               View All
             </button>
@@ -248,14 +248,14 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
               {incomingRequests.slice(0, 3).map((req) => (
                 <div
                   key={req.id}
-                  className="p-4 rounded-xl border border-gray-100 hover:border-emerald-300 transition-all space-y-2 card-hover"
+                  className="p-4 rounded-xl border border-gray-100 hover:border-blue-300 transition-all space-y-2 card-hover"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-mono text-xs font-semibold text-gray-400">#{req.id}</span>
                         <h4 className="font-bold text-xs text-gray-900">{req.householdName}</h4>
-                        <span className="text-[10px] text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full font-semibold">
+                        <span className="text-[10px] text-blue-800 bg-blue-50 px-2 py-0.5 rounded-full font-semibold">
                           {req.area}
                         </span>
                       </div>
@@ -268,12 +268,12 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
                     </div>
 
                     <div className="text-right">
-                      <span className="text-xs font-black text-[#14532D] block">
+                      <span className="text-xs font-black text-[#123B66] block">
                         Est. GH₵ {req.initialEstimatedPrice}
                       </span>
                       <button
                         onClick={() => onNavigate("requests", req.id)}
-                        className="mt-2 px-3.5 py-1.5 bg-[#14532D] text-white rounded-lg text-xs font-bold hover:bg-emerald-800 transition-colors shadow-xs"
+                        className="mt-2 px-3.5 py-1.5 bg-[#123B66] text-white rounded-lg text-xs font-bold hover:bg-blue-800 transition-colors shadow-xs"
                       >
                         Propose Price
                       </button>
@@ -289,7 +289,7 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
         <div className="space-y-5">
           <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-xs space-y-3">
             <h3 className="font-bold text-gray-900 text-sm flex items-center gap-2">
-              <DollarSign className="w-4 h-4 text-emerald-600" />
+              <DollarSign className="w-4 h-4 text-blue-600" />
               Earnings Breakdown
             </h3>
             
@@ -308,7 +308,7 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
               </div>
               <div className="flex justify-between py-1.5">
                 <span className="text-gray-500 font-semibold">Total All-Time:</span>
-                <span className="font-extrabold text-emerald-800">GH₵ {collector.earnings.total.toFixed(2)}</span>
+                <span className="font-extrabold text-blue-800">GH₵ {collector.earnings.total.toFixed(2)}</span>
               </div>
             </div>
 
@@ -320,12 +320,12 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
             </button>
           </div>
 
-          <div className="bg-emerald-50 rounded-2xl p-4 border border-emerald-100 text-xs text-emerald-950 space-y-1.5">
-            <p className="font-bold flex items-center gap-1.5 text-emerald-900">
-              <ShieldCheck className="w-4 h-4 text-emerald-700" />
+          <div className="bg-blue-50 rounded-2xl p-4 border border-blue-100 text-xs text-blue-950 space-y-1.5">
+            <p className="font-bold flex items-center gap-1.5 text-blue-900">
+              <ShieldCheck className="w-4 h-4 text-blue-700" />
               Tricycle Operator Standards
             </p>
-            <p className="text-[11px] text-emerald-800 leading-relaxed">
+            <p className="text-[11px] text-blue-800 leading-relaxed">
               Always cover loaded waste with a net or tarpaulin before entering major Accra highways to avoid municipal road penalties.
             </p>
           </div>

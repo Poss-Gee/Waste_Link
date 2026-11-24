@@ -79,7 +79,7 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
       </div>
 
       {successToast && (
-        <div className="p-4 bg-emerald-600 text-white rounded-xl text-xs font-semibold flex items-center gap-2 shadow-lg animate-in fade-in">
+        <div className="p-4 bg-blue-600 text-white rounded-xl text-xs font-semibold flex items-center gap-2 shadow-lg animate-in fade-in">
           <CheckCircle2 className="w-5 h-5" />
           <span>{successToast}</span>
         </div>
@@ -88,10 +88,10 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
       {/* Requests Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {openRequests.length === 0 ? (
-          <div className="md:col-span-2 bg-white rounded-2xl p-12 text-center border border-[#E5EAE4] space-y-2">
+          <div className="md:col-span-2 bg-white rounded-2xl p-12 text-center border border-[#E2E8F0] space-y-2">
             <Truck className="w-10 h-10 text-gray-300 mx-auto" />
-            <h3 className="text-sm font-bold text-[#17231B]">No Open Pickup Requests</h3>
-            <p className="text-xs text-[#647067] max-w-md mx-auto">
+            <h3 className="text-sm font-bold text-[#172B43]">No Open Pickup Requests</h3>
+            <p className="text-xs text-[#64748B] max-w-md mx-auto">
               There are no active unassigned pickup requests in {collector.operatingAreas.join(", ")} right now. Check back shortly as households post in real-time.
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
                 className={`bg-white rounded-2xl p-5 border shadow-xs transition-all flex flex-col justify-between space-y-4 ${
                   isNegotiatingWithMe
                     ? "border-amber-300 ring-2 ring-amber-100"
-                    : "border-gray-200 hover:border-emerald-300"
+                    : "border-gray-200 hover:border-blue-300"
                 }`}
               >
                 <div className="space-y-3">
@@ -113,7 +113,7 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="font-mono text-xs font-bold text-gray-400">#{req.id}</span>
-                      <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full">
+                      <span className="text-xs font-bold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded-full">
                         {req.area}
                       </span>
                     </div>
@@ -126,9 +126,9 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
 
                   {/* Customer Info */}
                   <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-full overflow-hidden bg-emerald-100 flex-shrink-0">
+                    <div className="w-9 h-9 rounded-full overflow-hidden bg-blue-100 flex-shrink-0">
                       <img
-                        src={req.householdAvatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100"}
+                        src={req.householdAvatar || "/avatars/cartoon-1.svg"}
                         alt={req.householdName}
                         className="w-full h-full object-cover"
                       />
@@ -136,7 +136,7 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
                     <div>
                       <h4 className="text-xs font-bold text-gray-900">{req.householdName}</h4>
                       <p className="text-[11px] text-gray-500 flex items-center gap-1">
-                        <MapPin className="w-3 h-3 text-emerald-600" />
+                        <MapPin className="w-3 h-3 text-blue-600" />
                         {req.address}
                       </p>
                     </div>
@@ -180,7 +180,7 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
                     <span className="text-[10px] text-gray-400 block uppercase font-semibold">
                       Baseline Estimate
                     </span>
-                    <span className="text-base font-black text-[#14532D]">
+                    <span className="text-base font-black text-[#123B66]">
                       GH₵ {req.initialEstimatedPrice}
                     </span>
                   </div>
@@ -195,7 +195,7 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
                   ) : (
                     <button
                       onClick={() => handleOpenProposal(req)}
-                      className="px-4 py-2 bg-[#14532D] hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition-colors shadow-xs"
+                      className="px-4 py-2 bg-[#123B66] hover:bg-blue-800 text-white rounded-xl text-xs font-bold transition-colors shadow-xs"
                     >
                       Propose Collection Price
                     </button>
@@ -245,7 +245,7 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
                     required
                     value={proposedAmount}
                     onChange={(e) => setProposedAmount(Number(e.target.value))}
-                    className="w-full text-base font-black pl-12 pr-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+                    className="w-full text-base font-black pl-12 pr-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
                   />
                 </div>
                 <span className="text-[10px] text-gray-400 mt-1 block">
@@ -263,7 +263,7 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
                   value={proposalNote}
                   onChange={(e) => setProposalNote(e.target.value)}
                   placeholder="e.g. In the area, ready to load in 15 mins..."
-                  className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+                  className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
                 />
               </div>
 
@@ -278,7 +278,7 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-5 py-2.5 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors flex items-center gap-1.5 shadow-sm disabled:opacity-50"
+                  className="px-5 py-2.5 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors flex items-center gap-1.5 shadow-sm disabled:opacity-50"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>{isSubmitting ? "Sending..." : "Submit Proposal"}</span>

@@ -8,7 +8,6 @@ import {
   Truck,
   Clock,
   CheckCircle2,
-  DollarSign,
   ChevronRight,
   MapPin,
   AlertCircle,
@@ -19,6 +18,7 @@ import {
   Calendar,
 } from "lucide-react";
 import ReceiptModal from "@/components/common/ReceiptModal";
+import CedisIcon from "@/components/common/CedisIcon";
 
 interface HouseholdDashboardProps {
   onNavigate: (tab: string, requestId?: string) => void;
@@ -55,21 +55,21 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
     <div className="space-y-6">
       
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-[#14532D] via-[#166534] to-[#15803D] rounded-2xl p-6 sm:p-8 text-white shadow-card flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-[#123B66] via-[#1E40AF] to-[#1D4ED8] rounded-2xl p-6 sm:p-8 text-white shadow-card flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
         {/* Subtle decorative leaf pattern */}
         <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none transform translate-x-12 translate-y-12">
           <Truck className="w-80 h-80 text-white" />
         </div>
 
         <div className="space-y-2 max-w-xl z-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-emerald-200 text-xs font-semibold backdrop-blur-xs">
-            <MapPin className="w-3.5 h-3.5 text-emerald-300" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-blue-200 text-xs font-semibold backdrop-blur-xs">
+            <MapPin className="w-3.5 h-3.5 text-blue-300" />
             {household.area || "Accra"}, Greater Accra
           </div>
           <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
             Welcome back, {household.name.split(" ")[0]}!
           </h1>
-          <p className="text-sm text-emerald-100 leading-relaxed">
+          <p className="text-sm text-blue-100 leading-relaxed">
             Need rubbish collected today? Request a verified local tricycle rider, negotiate your price transparently, and pay safely upon completion.
           </p>
         </div>
@@ -77,9 +77,9 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
         <div className="z-10 flex-shrink-0 w-full sm:w-auto">
           <button
             onClick={() => onNavigate("request")}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-[#14532D] font-bold rounded-xl shadow-lg hover:bg-emerald-50 transition-all transform hover:scale-[1.02] active:scale-[0.98] text-sm"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-[#123B66] font-bold rounded-xl shadow-lg hover:bg-blue-50 transition-all transform hover:scale-[1.02] active:scale-[0.98] text-sm"
           >
-            <PlusCircle className="w-5 h-5 text-[#16A34A]" />
+            <PlusCircle className="w-5 h-5 text-[#2563EB]" />
             Request Rubbish Collection
           </button>
         </div>
@@ -90,7 +90,7 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-500 font-medium">Total Pickups</span>
-            <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg">
+            <div className="p-2 bg-blue-50 text-blue-700 rounded-lg">
               <Truck className="w-4 h-4" />
             </div>
           </div>
@@ -101,21 +101,21 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-500 font-medium">Completed</span>
-            <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg">
+            <div className="p-2 bg-blue-50 text-blue-700 rounded-lg">
               <CheckCircle2 className="w-4 h-4" />
             </div>
           </div>
-          <div className="mt-2 text-2xl font-black text-emerald-700">
+          <div className="mt-2 text-2xl font-black text-blue-700">
             {myRequests.filter((r) => r.status === "paid").length}
           </div>
-          <span className="text-[11px] text-emerald-600 font-medium">100% verified disposed</span>
+          <span className="text-[11px] text-blue-600 font-medium">100% verified disposed</span>
         </div>
 
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-500 font-medium">Total Invested</span>
-            <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg">
-              <DollarSign className="w-4 h-4" />
+            <div className="p-2 bg-blue-50 text-blue-700 rounded-lg">
+              <CedisIcon className="w-4 h-4" />
             </div>
           </div>
           <div className="mt-2 text-2xl font-black text-gray-900">GH₵ {totalSpent.toFixed(0)}</div>
@@ -138,16 +138,16 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
 
       {/* ACTIVE JOB TRACKER CARD (if any) */}
       {activeRequest && (
-        <div className="bg-white rounded-2xl p-6 border-2 border-emerald-600 shadow-card animate-in fade-in">
+        <div className="bg-white rounded-2xl p-6 border-2 border-blue-600 shadow-card animate-in fade-in">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-gray-100">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <div className="w-3 h-3 rounded-full bg-blue-500 animate-ping"></div>
+              <span className="text-xs font-bold uppercase tracking-wider text-blue-800">
                 Active Collection &bull; #{activeRequest.id}
               </span>
             </div>
             
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-[#14532D]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-[#123B66]">
               <span className="capitalize">{activeRequest.status.replace(/_/g, " ")}</span>
             </div>
           </div>
@@ -164,7 +164,7 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
               <div className="flex items-center gap-2 mt-1">
                 {activeRequest.collectorName ? (
                   <>
-                    <div className="w-8 h-8 rounded-full overflow-hidden bg-emerald-100">
+                    <div className="w-8 h-8 rounded-full overflow-hidden bg-blue-100">
                       <img
                         src={activeRequest.collectorAvatar || "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100"}
                         alt={activeRequest.collectorName}
@@ -187,13 +187,13 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-end gap-3">
               <div className="text-left sm:text-right">
                 <span className="text-[11px] text-gray-500 block">Agreed / Proposed Price</span>
-                <span className="text-xl font-black text-[#14532D]">
+                <span className="text-xl font-black text-[#123B66]">
                   GH₵ {activeRequest.agreedPrice || activeRequest.initialEstimatedPrice || 45}
                 </span>
               </div>
               <button
                 onClick={() => onNavigate("tracking", activeRequest.id)}
-                className="w-full sm:w-auto px-4 py-2.5 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                className="w-full sm:w-auto px-4 py-2.5 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
               >
                 <span>Open Live Tracker &amp; Chat</span>
                 <ChevronRight className="w-4 h-4" />
@@ -210,12 +210,12 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
         <div className="lg:col-span-1 bg-white rounded-2xl p-5 border border-gray-200 shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-gray-900 text-sm flex items-center gap-1.5">
-              <Truck className="w-4 h-4 text-emerald-600" />
+              <Truck className="w-4 h-4 text-blue-600" />
               Available Nearby Tricycles
             </h3>
             <button
               onClick={() => onNavigate("nearby")}
-              className="text-xs font-semibold text-emerald-700 hover:text-emerald-900 flex items-center gap-0.5"
+              className="text-xs font-semibold text-blue-700 hover:text-blue-900 flex items-center gap-0.5"
             >
               View all ({collectors.filter((c) => c.isOnline).length})
               <ChevronRight className="w-3.5 h-3.5" />
@@ -226,11 +226,11 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
             {nearbyCollectors.map((col) => (
               <div
                 key={col.id}
-                className="p-3 rounded-xl border border-gray-100 hover:border-emerald-200 hover:bg-emerald-50/30 transition-all card-hover space-y-2"
+                className="p-3 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all card-hover space-y-2"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-10 h-10 rounded-full overflow-hidden bg-emerald-100 flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full overflow-hidden bg-blue-100 flex-shrink-0">
                       <img src={col.avatar} alt={col.name} className="w-full h-full object-cover" />
                     </div>
                     <div>
@@ -239,7 +239,7 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
                           {col.name}
                         </h4>
                         {col.isVerified && (
-                          <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                          <ShieldCheck className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
                         )}
                       </div>
                       <p className="text-[10px] text-gray-500">{col.tricycleModel}</p>
@@ -256,13 +256,13 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
                 </div>
 
                 <div className="flex items-center justify-between pt-1 border-t border-gray-50 text-[11px]">
-                  <span className="text-emerald-700 font-medium flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span className="text-blue-700 font-medium flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
                     Online in {col.operatingAreas[0]}
                   </span>
                   <button
                     onClick={() => onNavigate("request")}
-                    className="font-semibold text-[#14532D] hover:underline"
+                    className="font-semibold text-[#123B66] hover:underline"
                   >
                     Request &rarr;
                   </button>
@@ -271,12 +271,12 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
             ))}
           </div>
 
-          <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-100 text-xs text-emerald-900">
-            <p className="font-semibold text-emerald-950 flex items-center gap-1">
-              <ShieldCheck className="w-4 h-4 text-emerald-700" />
+          <div className="p-3 bg-blue-50 rounded-xl border border-blue-100 text-xs text-blue-900">
+            <p className="font-semibold text-blue-950 flex items-center gap-1">
+              <ShieldCheck className="w-4 h-4 text-blue-700" />
               Verified Operators Only
             </p>
-            <p className="text-[11px] text-emerald-800/90 mt-0.5">
+            <p className="text-[11px] text-blue-800/90 mt-0.5">
               Every tricycle rider carries an active National Ghana Card and verified Accra Municipal permit.
             </p>
           </div>
@@ -286,12 +286,12 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
         <div className="lg:col-span-2 bg-white rounded-2xl p-5 border border-gray-200 shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-gray-900 text-sm flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-emerald-600" />
+              <Clock className="w-4 h-4 text-blue-600" />
               Recent Collection History
             </h3>
             <button
               onClick={() => onNavigate("history")}
-              className="text-xs font-semibold text-emerald-700 hover:text-emerald-900 flex items-center gap-0.5"
+              className="text-xs font-semibold text-blue-700 hover:text-blue-900 flex items-center gap-0.5"
             >
               View Full History ({myRequests.length})
               <ChevronRight className="w-3.5 h-3.5" />
@@ -313,7 +313,7 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
                     <div className="flex items-center gap-2">
                       <span className="font-mono text-xs font-semibold text-gray-500">#{req.id}</span>
                       <span className="text-xs font-bold text-gray-900">{req.wasteCategory}</span>
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-800">
                         Paid &bull; Disposed
                       </span>
                     </div>
@@ -328,7 +328,7 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
 
                   <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
                     <div className="text-right">
-                      <span className="text-xs font-bold text-[#14532D] block">
+                      <span className="text-xs font-bold text-[#123B66] block">
                         GH₵ {(req.agreedPrice || req.initialEstimatedPrice || 45).toFixed(2)}
                       </span>
                       <span className="text-[10px] text-gray-400 capitalize">
@@ -338,7 +338,7 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
 
                     <button
                       onClick={() => setSelectedReceiptReq(req)}
-                      className="px-3 py-1.5 bg-gray-100 hover:bg-emerald-50 hover:text-emerald-800 text-gray-700 rounded-lg text-xs font-medium transition-colors"
+                      className="px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-800 text-gray-700 rounded-lg text-xs font-medium transition-colors"
                     >
                       Receipt
                     </button>
@@ -352,7 +352,7 @@ export default function HouseholdDashboard({ onNavigate }: HouseholdDashboardPro
             <span>All collections include eco-friendly disposal certification.</span>
             <button
               onClick={() => onNavigate("complaints")}
-              className="text-emerald-700 font-semibold hover:underline"
+              className="text-blue-700 font-semibold hover:underline"
             >
               Report an Issue
             </button>

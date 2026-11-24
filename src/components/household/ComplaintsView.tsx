@@ -68,7 +68,7 @@ export default function ComplaintsView() {
 
         <button
           onClick={() => setShowNewForm(!showNewForm)}
-          className="px-4 py-2.5 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors flex items-center gap-1.5 shadow-sm"
+          className="px-4 py-2.5 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors flex items-center gap-1.5 shadow-sm"
         >
           <PlusCircle className="w-4 h-4" />
           <span>{showNewForm ? "Close Form" : "File a Complaint"}</span>
@@ -76,8 +76,8 @@ export default function ComplaintsView() {
       </div>
 
       {successNotice && (
-        <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 flex items-center gap-2 animate-in fade-in">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+        <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl text-xs text-blue-900 flex items-center gap-2 animate-in fade-in">
+          <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0" />
           <span>Dispute submitted successfully! An administrator will review your case within 2 hours.</span>
         </div>
       )}
@@ -98,7 +98,7 @@ export default function ComplaintsView() {
               <select
                 value={selectedReqId}
                 onChange={(e) => setSelectedReqId(e.target.value)}
-                className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden bg-white"
+                className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden bg-white"
               >
                 <option value="">Select a collection (or General Inquiry)</option>
                 {myRequests.map((r) => (
@@ -116,7 +116,7 @@ export default function ComplaintsView() {
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value as any)}
-                className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden bg-white"
+                className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden bg-white"
               >
                 <option value="Spilled Waste">Spilled Waste on Ground</option>
                 <option value="Overcharging Dispute">Overcharging / Asking above agreed price</option>
@@ -137,7 +137,7 @@ export default function ComplaintsView() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Explain clearly what transpired, approximate time, and any agreements made with the collector..."
-                className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+                className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
               />
             </div>
           </div>
@@ -185,7 +185,7 @@ export default function ComplaintsView() {
                   <span
                     className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
                       c.status === "resolved"
-                        ? "bg-emerald-100 text-emerald-800"
+                        ? "bg-blue-100 text-blue-800"
                         : c.status === "under_review"
                         ? "bg-amber-100 text-amber-800"
                         : "bg-rose-100 text-rose-800"
@@ -207,12 +207,12 @@ export default function ComplaintsView() {
               </div>
 
               {c.adminNotes && (
-                <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-950 space-y-1">
-                  <span className="font-bold flex items-center gap-1 text-emerald-900">
-                    <ShieldAlert className="w-3.5 h-3.5 text-emerald-700" />
+                <div className="p-3 bg-blue-50 rounded-xl border border-blue-200 text-xs text-blue-950 space-y-1">
+                  <span className="font-bold flex items-center gap-1 text-blue-900">
+                    <ShieldAlert className="w-3.5 h-3.5 text-blue-700" />
                     Platform Admin Resolution Note:
                   </span>
-                  <p className="text-emerald-800 text-[11px]">{c.adminNotes}</p>
+                  <p className="text-blue-800 text-[11px]">{c.adminNotes}</p>
                 </div>
               )}
             </div>

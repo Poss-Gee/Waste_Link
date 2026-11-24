@@ -91,10 +91,10 @@ export default function PriceNegotiationChat({
     <div className="bg-white rounded-2xl border border-gray-200 shadow-xs overflow-hidden flex flex-col">
       
       {/* Header */}
-      <div className="p-4 sm:p-5 bg-gradient-to-r from-emerald-50 to-white border-b border-gray-100 flex flex-wrap items-center justify-between gap-3">
+      <div className="p-4 sm:p-5 bg-gradient-to-r from-blue-50 to-white border-b border-gray-100 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-[#14532D] text-white rounded-xl shadow-xs">
-            <MessageSquare className="w-5 h-5 text-emerald-300" />
+          <div className="p-2.5 bg-[#123B66] text-white rounded-xl shadow-xs">
+            <MessageSquare className="w-5 h-5 text-blue-300" />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -102,7 +102,7 @@ export default function PriceNegotiationChat({
                 Price Negotiation Thread &bull; #{request.id}
               </h3>
               {isAgreed ? (
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-800 border border-blue-200">
                   ✓ Price Agreed
                 </span>
               ) : (
@@ -118,11 +118,11 @@ export default function PriceNegotiationChat({
         </div>
 
         {/* Agreed or Baseline Box */}
-        <div className="text-right bg-white px-3 py-1.5 rounded-xl border border-emerald-200 shadow-xs">
+        <div className="text-right bg-white px-3 py-1.5 rounded-xl border border-blue-200 shadow-xs">
           <span className="text-[10px] text-gray-400 uppercase font-semibold block">
             {isAgreed ? "Binding Agreed Fee" : "Initial Benchmark"}
           </span>
-          <span className="text-base font-black text-[#14532D]">
+          <span className="text-base font-black text-[#123B66]">
             GH₵ {request.agreedPrice || request.initialEstimatedPrice || 45}
           </span>
         </div>
@@ -133,7 +133,7 @@ export default function PriceNegotiationChat({
         
         {/* Initial Request Bubble */}
         <div className="flex items-start gap-2.5">
-          <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+          <div className="w-7 h-7 rounded-full bg-blue-700 text-white flex items-center justify-center font-bold text-[10px] flex-shrink-0">
             WL
           </div>
           <div className="bg-white p-3 rounded-2xl rounded-tl-none border border-gray-200 shadow-xs max-w-md text-xs text-gray-700 space-y-1">
@@ -164,8 +164,8 @@ export default function PriceNegotiationChat({
               <div
                 className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-[10px] flex-shrink-0 ${
                   offer.proposedBy === "collector"
-                    ? "bg-[#14532D] text-white"
-                    : "bg-emerald-600 text-white"
+                    ? "bg-[#123B66] text-white"
+                    : "bg-blue-600 text-white"
                 }`}
               >
                 {offer.senderName.charAt(0)}
@@ -174,7 +174,7 @@ export default function PriceNegotiationChat({
               <div
                 className={`p-4 rounded-2xl border shadow-xs max-w-md text-xs space-y-2 ${
                   isMe
-                    ? "bg-emerald-50/80 border-emerald-200 rounded-tr-none text-emerald-950"
+                    ? "bg-blue-50/80 border-blue-200 rounded-tr-none text-blue-950"
                     : "bg-white border-gray-200 rounded-tl-none text-gray-800"
                 }`}
               >
@@ -189,12 +189,12 @@ export default function PriceNegotiationChat({
 
                 <div className="flex items-baseline gap-2 pt-1">
                   <span className="text-gray-500 font-medium">Offered Price:</span>
-                  <span className="text-lg font-black text-[#14532D]">
+                  <span className="text-lg font-black text-[#123B66]">
                     GH₵ {offer.amount}
                   </span>
                   
                   {isAccepted && (
-                    <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full ml-auto">
+                    <span className="text-[10px] font-bold text-blue-800 bg-blue-100 px-2 py-0.5 rounded-full ml-auto">
                       ✓ Accepted
                     </span>
                   )}
@@ -227,9 +227,9 @@ export default function PriceNegotiationChat({
                     <button
                       type="button"
                       onClick={() => setPendingAction({ type: "accept", offer })}
-                      className="flex-1 py-2 px-3 bg-[#14532D] text-white rounded-lg font-bold text-xs hover:bg-emerald-800 transition-colors flex items-center justify-center gap-1 shadow-xs"
+                      className="flex-1 py-2 px-3 bg-[#123B66] text-white rounded-lg font-bold text-xs hover:bg-blue-800 transition-colors flex items-center justify-center gap-1 shadow-xs"
                     >
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-300" />
                       <span>Accept GH₵{offer.amount}</span>
                     </button>
                     <button
@@ -256,17 +256,17 @@ export default function PriceNegotiationChat({
 
       {/* Footer / Offer Submission Bar */}
       {isAgreed ? (
-        <div className="p-4 bg-emerald-50 border-t border-emerald-100 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-emerald-900 text-xs">
-            <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+        <div className="p-4 bg-blue-50 border-t border-blue-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-2 text-blue-900 text-xs">
+            <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0" />
             <div>
               <span className="font-bold">Price Confirmed: GH₵ {request.agreedPrice}</span>
-              <p className="text-[11px] text-emerald-700">Both parties agreed. The collector is authorized to execute pickup.</p>
+              <p className="text-[11px] text-blue-700">Both parties agreed. The collector is authorized to execute pickup.</p>
             </div>
           </div>
           <button
             onClick={onNegotiationComplete}
-            className="w-full sm:w-auto px-4 py-2 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors flex items-center justify-center gap-1.5"
+            className="w-full sm:w-auto px-4 py-2 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors flex items-center justify-center gap-1.5"
           >
             <span>Proceed to Collection Tracking</span>
             <ArrowRight className="w-4 h-4" />
@@ -289,7 +289,7 @@ export default function PriceNegotiationChat({
                   value={counterAmount}
                   onChange={(e) => setCounterAmount(Number(e.target.value))}
                   placeholder="Offer"
-                  className="w-full text-xs font-bold pl-12 pr-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+                  className="w-full text-xs font-bold pl-12 pr-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
                 />
               </div>
 
@@ -298,13 +298,13 @@ export default function PriceNegotiationChat({
                 value={counterNote}
                 onChange={(e) => setCounterNote(e.target.value)}
                 placeholder="Optional note: e.g. Bags are already bundled near gate..."
-                className="flex-1 text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+                className="flex-1 text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
               />
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-5 py-2.5 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm disabled:opacity-50"
+                className="px-5 py-2.5 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm disabled:opacity-50"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>{latestOffer ? "Send Counteroffer" : "Submit Price"}</span>
@@ -319,7 +319,7 @@ export default function PriceNegotiationChat({
             )}
 
             <p className="text-[11px] text-gray-400 flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
               Per WasteLink policy, the collection is only confirmed once both customer and collector agree.
             </p>
           </form>

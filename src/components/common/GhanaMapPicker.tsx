@@ -72,11 +72,11 @@ export default function GhanaMapPicker({
             onClick={() => handleSelectZone(z)}
             className={`text-xs px-2.5 py-1 rounded-full border transition-all flex items-center gap-1 ${
               currentSelection.area === z.area
-                ? "bg-[#14532D] text-white border-[#14532D] font-medium shadow-sm"
-                : "bg-white text-gray-700 border-gray-200 hover:border-emerald-500"
+                ? "bg-[#123B66] text-white border-[#123B66] font-medium shadow-sm"
+                : "bg-white text-gray-700 border-gray-200 hover:border-blue-500"
             }`}
           >
-            {currentSelection.area === z.area && <Check className="w-3 h-3 text-emerald-300" />}
+            {currentSelection.area === z.area && <Check className="w-3 h-3 text-blue-300" />}
             {z.area}
           </button>
         ))}
@@ -85,13 +85,13 @@ export default function GhanaMapPicker({
       {/* Interactive Map Visual Simulator */}
       <div 
         onClick={handleMapClick}
-        className="relative h-48 w-full rounded-xl overflow-hidden border border-emerald-900/20 bg-[#e8efe8] cursor-crosshair group shadow-inner"
+        className="relative h-48 w-full rounded-xl overflow-hidden border border-blue-900/20 bg-[#e8efe8] cursor-crosshair group shadow-inner"
       >
         {/* Map Grid / Styled Roads graphic */}
         <div 
           className="absolute inset-0 opacity-40"
           style={{
-            backgroundImage: `radial-gradient(#16a34a 0.75px, transparent 0.75px), linear-gradient(to right, #d5e4d5 1px, transparent 1px), linear-gradient(to bottom, #d5e4d5 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(#2563EB 0.75px, transparent 0.75px), linear-gradient(to right, #d5e4d5 1px, transparent 1px), linear-gradient(to bottom, #d5e4d5 1px, transparent 1px)`,
             backgroundSize: "20px 20px, 40px 40px, 40px 40px"
           }}
         />
@@ -100,14 +100,14 @@ export default function GhanaMapPicker({
         <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-35" preserveAspectRatio="none" viewBox="0 0 400 200">
           <path d="M 0 170 Q 150 160 250 180 T 400 170" fill="none" stroke="#0284c7" strokeWidth="8" />
           <path d="M 50 0 L 220 200" fill="none" stroke="#94a399" strokeWidth="3" strokeDasharray="4 2" />
-          <path d="M 180 0 L 190 200" fill="none" stroke="#16a34a" strokeWidth="4" />
-          <path d="M 0 80 Q 200 110 400 60" fill="none" stroke="#16a34a" strokeWidth="4" />
-          <circle cx="210" cy="85" r="28" fill="#16a34a" fillOpacity="0.08" />
+          <path d="M 180 0 L 190 200" fill="none" stroke="#2563EB" strokeWidth="4" />
+          <path d="M 0 80 Q 200 110 400 60" fill="none" stroke="#2563EB" strokeWidth="4" />
+          <circle cx="210" cy="85" r="28" fill="#2563EB" fillOpacity="0.08" />
         </svg>
 
         {/* Landmarks Markers */}
-        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md text-[10px] font-semibold text-emerald-900 shadow-sm flex items-center gap-1 border border-emerald-100">
-          <Compass className="w-3 h-3 text-emerald-600 animate-spin" style={{ animationDuration: "12s" }} />
+        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md text-[10px] font-semibold text-blue-900 shadow-sm flex items-center gap-1 border border-blue-100">
+          <Compass className="w-3 h-3 text-blue-600 animate-spin" style={{ animationDuration: "12s" }} />
           <span>Greater Accra &bull; GPS Active</span>
         </div>
 
@@ -121,11 +121,11 @@ export default function GhanaMapPicker({
           style={{ left: `${pinOffset.x}%`, top: `${pinOffset.y}%` }}
         >
           <div className="relative flex flex-col items-center">
-            <div className="bg-[#14532D] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg border border-white flex items-center gap-1 whitespace-nowrap mb-0.5">
-              <MapPin className="w-3 h-3 text-emerald-300" />
+            <div className="bg-[#123B66] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg border border-white flex items-center gap-1 whitespace-nowrap mb-0.5">
+              <MapPin className="w-3 h-3 text-blue-300" />
               <span>{currentSelection.area}</span>
             </div>
-            <div className="w-4 h-4 rounded-full bg-emerald-600 border-2 border-white shadow-md flex items-center justify-center">
+            <div className="w-4 h-4 rounded-full bg-blue-600 border-2 border-white shadow-md flex items-center justify-center">
               <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
             </div>
             <div className="w-6 h-2 rounded-full bg-black/20 blur-[2px] mt-0.5"></div>
@@ -138,15 +138,15 @@ export default function GhanaMapPicker({
         </div>
       </div>
 
-      <div className="flex items-center justify-between text-xs text-gray-600 bg-emerald-50/60 p-2.5 rounded-lg border border-emerald-100">
+      <div className="flex items-center justify-between text-xs text-gray-600 bg-blue-50/60 p-2.5 rounded-lg border border-blue-100">
         <div className="flex items-center gap-2">
-          <Navigation className="w-4 h-4 text-emerald-700 flex-shrink-0" />
+          <Navigation className="w-4 h-4 text-blue-700 flex-shrink-0" />
           <div>
             <span className="font-semibold text-gray-900">{currentSelection.area}: </span>
             <span className="text-gray-600">{landmark || currentSelection.landmark}</span>
           </div>
         </div>
-        <span className="text-[11px] font-medium text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">
+        <span className="text-[11px] font-medium text-blue-700 bg-blue-100 px-2 py-0.5 rounded">
           Verified Zone
         </span>
       </div>

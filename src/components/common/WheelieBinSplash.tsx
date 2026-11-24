@@ -32,7 +32,7 @@ export default function WheelieBinSplash({ onComplete }: WheelieBinSplashProps) 
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#F7F9F5] transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#F5F8FC] transition-opacity duration-500 ${
         fadingOut ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
       aria-label="WasteLink Ghana Launch Animation"
@@ -40,7 +40,7 @@ export default function WheelieBinSplash({ onComplete }: WheelieBinSplashProps) 
       {/* Skip button for quick navigation */}
       <button
         onClick={handleSkip}
-        className="absolute top-5 right-5 px-3.5 py-1.5 rounded-full bg-white border border-[#E5EAE4] text-xs font-bold text-[#647067] hover:text-[#14532D] hover:border-[#16A34A] shadow-xs transition-all flex items-center gap-1"
+        className="absolute top-5 right-5 px-3.5 py-1.5 rounded-full bg-white border border-[#E2E8F0] text-xs font-bold text-[#64748B] hover:text-[#123B66] hover:border-[#2563EB] shadow-xs transition-all flex items-center gap-1"
       >
         <span>Skip</span>
         <ArrowRight className="w-3.5 h-3.5" />
@@ -70,9 +70,9 @@ export default function WheelieBinSplash({ onComplete }: WheelieBinSplashProps) 
             >
               {/* Motion / pull wind lines behind the bin */}
               <g className="animate-speed-wind">
-                <line x1="-18" y1="54" x2="4" y2="54" stroke="#16A34A" strokeWidth="2.5" strokeLinecap="round" />
-                <line x1="-26" y1="68" x2="2" y2="68" stroke="#86EFAC" strokeWidth="2.5" strokeLinecap="round" />
-                <line x1="-14" y1="82" x2="6" y2="82" stroke="#16A34A" strokeWidth="2" strokeLinecap="round" />
+                <line x1="-18" y1="54" x2="4" y2="54" stroke="#2563EB" strokeWidth="2.5" strokeLinecap="round" />
+                <line x1="-26" y1="68" x2="2" y2="68" stroke="#93C5FD" strokeWidth="2.5" strokeLinecap="round" />
+                <line x1="-14" y1="82" x2="6" y2="82" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" />
               </g>
 
               {/* Bin Group that tilts back onto its rear wheel */}
@@ -149,13 +149,13 @@ export default function WheelieBinSplash({ onComplete }: WheelieBinSplashProps) 
         </div>
 
         {/* Road / Progress Track */}
-        <div className="w-full h-2 bg-[#E5EAE4] rounded-full overflow-hidden shadow-inner">
-          <div className="h-full bg-gradient-to-r from-[#14532D] to-[#16A34A] rounded-full animate-track-fill" />
+        <div className="w-full h-2 bg-[#E2E8F0] rounded-full overflow-hidden shadow-inner">
+          <div className="h-full bg-gradient-to-r from-[#123B66] to-[#2563EB] rounded-full animate-track-fill" />
         </div>
 
-        <div className="flex items-center justify-between text-[11px] font-semibold text-[#647067] mt-2.5">
+        <div className="flex items-center justify-between text-[11px] font-semibold text-[#64748B] mt-2.5">
           <span>Preparing pickup network...</span>
-          <span className="text-[#16A34A] font-bold">Accra &bull; Ready</span>
+          <span className="text-[#2563EB] font-bold">Accra &bull; Ready</span>
         </div>
       </div>
     </div>

@@ -4,18 +4,18 @@
   "description": "Connecting Homes. Empowering Collectors. Cleaner Communities in Ghana.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F7F9F5",
-  "theme_color": "#14532D",
+  "background_color": "#F5F8FC",
+  "theme_color": "#123B66",
   "icons": [
     {
-      "src": "/logo.png",
+      "src": "/logo-symbol.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #F7F9F5;
-  --foreground: #17231B;
+  --background: #F5F8FC;
+  --foreground: #172B43;
 }
 
 body {
@@ -22,16 +22,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f1;
+  background: #F1F5F9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5cd;
+  background: #CBD5E1;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a399;
+  background: #94A3B8;
 }
 
 /* Pulse animation for simulated live location tracker */

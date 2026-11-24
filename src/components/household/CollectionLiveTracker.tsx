@@ -82,7 +82,7 @@ export default function CollectionLiveTracker({
         <div>
           <div className="flex items-center gap-2">
             <span className="font-mono text-xs font-semibold text-gray-500">#{request.id}</span>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800">
               {request.status.replace(/_/g, " ").toUpperCase()}
             </span>
           </div>
@@ -90,7 +90,7 @@ export default function CollectionLiveTracker({
             {request.wasteCategory} ({request.quantity})
           </h2>
           <p className="text-xs text-gray-500 flex items-center gap-1 mt-0.5">
-            <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+            <MapPin className="w-3.5 h-3.5 text-blue-600" />
             {request.address}, {request.area} &bull; {request.landmark}
           </p>
         </div>
@@ -100,7 +100,7 @@ export default function CollectionLiveTracker({
             <span className="text-[10px] text-gray-400 font-semibold block uppercase">
               Confirmed Price
             </span>
-            <span className="text-2xl font-black text-[#14532D]">
+            <span className="text-2xl font-black text-[#123B66]">
               GH₵ {request.agreedPrice || request.initialEstimatedPrice || 45}
             </span>
           </div>
@@ -108,7 +108,7 @@ export default function CollectionLiveTracker({
           {request.status === "completed" && (
             <button
               onClick={onPayNow}
-              className="px-5 py-3 bg-[#16A34A] text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition-all shadow-md flex items-center gap-1.5 animate-bounce"
+              className="px-5 py-3 bg-[#2563EB] text-white rounded-xl text-xs font-bold hover:bg-blue-700 transition-all shadow-md flex items-center gap-1.5 animate-bounce"
             >
               <CreditCard className="w-4 h-4" />
               <span>Proceed to Payment</span>
@@ -118,7 +118,7 @@ export default function CollectionLiveTracker({
           {request.status === "negotiating" && (
             <button
               onClick={onOpenNegotiation}
-              className="px-4 py-2.5 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors shadow-sm"
+              className="px-4 py-2.5 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors shadow-sm"
             >
               Open Negotiation
             </button>
@@ -130,7 +130,7 @@ export default function CollectionLiveTracker({
       <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-xs">
         <h3 className="text-sm font-bold text-gray-900 mb-6 flex items-center justify-between">
           <span>Collection Lifecycle Tracker</span>
-          <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+          <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
             Stage {Math.min(currentIdx + 1, 8)} of 8
           </span>
         </h3>
@@ -140,7 +140,7 @@ export default function CollectionLiveTracker({
           {/* Connecting line */}
           <div className="hidden lg:block absolute top-4 left-6 right-6 h-1 bg-gray-200 -z-0">
             <div
-              className="h-full bg-emerald-600 transition-all duration-500"
+              className="h-full bg-blue-600 transition-all duration-500"
               style={{ width: `${(currentIdx / (STAGES.length - 1)) * 100}%` }}
             />
           </div>
@@ -156,9 +156,9 @@ export default function CollectionLiveTracker({
                   <div
                     className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs transition-all ${
                       isPast
-                        ? "bg-emerald-600 text-white shadow-xs"
+                        ? "bg-blue-600 text-white shadow-xs"
                         : isCurrent
-                        ? "bg-[#14532D] text-white ring-4 ring-emerald-200 shadow-md scale-105"
+                        ? "bg-[#123B66] text-white ring-4 ring-blue-200 shadow-md scale-105"
                         : "bg-gray-100 text-gray-400 border border-gray-200"
                     }`}
                   >
@@ -168,7 +168,7 @@ export default function CollectionLiveTracker({
                   <span
                     className={`text-[11px] font-bold leading-tight ${
                       isCurrent
-                        ? "text-[#14532D]"
+                        ? "text-[#123B66]"
                         : isPast
                         ? "text-gray-800"
                         : "text-gray-400"
@@ -194,23 +194,23 @@ export default function CollectionLiveTracker({
         <div className="lg:col-span-2 bg-white rounded-2xl p-5 border border-gray-200 shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Navigation className="w-4 h-4 text-emerald-600 animate-spin" style={{ animationDuration: "10s" }} />
+              <Navigation className="w-4 h-4 text-blue-600 animate-spin" style={{ animationDuration: "10s" }} />
               <h3 className="text-sm font-bold text-gray-900">
                 Simulated Live GPS Dispatch Map
               </h3>
             </div>
-            <span className="text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-full">
+            <span className="text-[10px] font-semibold bg-blue-50 text-blue-800 border border-blue-200 px-2 py-0.5 rounded-full">
               Mock GPS Coordinates &bull; Active
             </span>
           </div>
 
           {/* Interactive Map Visual */}
-          <div className="relative h-64 rounded-xl overflow-hidden border border-emerald-900/10 bg-[#e8efe8] shadow-inner">
+          <div className="relative h-64 rounded-xl overflow-hidden border border-blue-900/10 bg-[#e8efe8] shadow-inner">
             {/* Grid texture */}
             <div
               className="absolute inset-0 opacity-40"
               style={{
-                backgroundImage: `radial-gradient(#16a34a 0.75px, transparent 0.75px), linear-gradient(to right, #d5e4d5 1px, transparent 1px), linear-gradient(to bottom, #d5e4d5 1px, transparent 1px)`,
+                backgroundImage: `radial-gradient(#2563EB 0.75px, transparent 0.75px), linear-gradient(to right, #d5e4d5 1px, transparent 1px), linear-gradient(to bottom, #d5e4d5 1px, transparent 1px)`,
                 backgroundSize: "20px 20px, 40px 40px, 40px 40px",
               }}
             />
@@ -220,7 +220,7 @@ export default function CollectionLiveTracker({
               <path
                 d="M 120 70 Q 200 120 280 180 T 400 240"
                 fill="none"
-                stroke="#16a34a"
+                stroke="#2563EB"
                 strokeWidth="5"
                 strokeDasharray="6 4"
                 className="animate-pulse"
@@ -230,10 +230,10 @@ export default function CollectionLiveTracker({
             {/* Destination Household Pin */}
             <div className="absolute top-[220px] left-[380px] transform -translate-x-1/2 -translate-y-full">
               <div className="flex flex-col items-center">
-                <span className="bg-[#14532D] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md whitespace-nowrap mb-0.5">
+                <span className="bg-[#123B66] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md whitespace-nowrap mb-0.5">
                   Household: {request.householdName.split(" ")[0]}
                 </span>
-                <div className="w-5 h-5 rounded-full bg-emerald-700 border-2 border-white shadow-md flex items-center justify-center text-white">
+                <div className="w-5 h-5 rounded-full bg-blue-700 border-2 border-white shadow-md flex items-center justify-center text-white">
                   <MapPin className="w-3 h-3" />
                 </div>
               </div>
@@ -265,7 +265,7 @@ export default function CollectionLiveTracker({
             {/* Map Telemetry Overlays */}
             <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm p-3 rounded-xl shadow-md border border-gray-200 text-xs space-y-1">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                <span className="w-2 h-2 rounded-full bg-blue-500 animate-ping"></span>
                 <span className="font-bold text-gray-900">
                   {request.status === "collector_en_route"
                     ? `En Route (~${etaMinutes} mins)`
@@ -290,7 +290,7 @@ export default function CollectionLiveTracker({
 
           <div className="flex items-center justify-between text-xs text-gray-500 bg-gray-50 p-3 rounded-xl">
             <span>Simulated GPS location tracking is active for this prototype demonstration.</span>
-            <span className="text-emerald-700 font-medium">Auto-refreshes</span>
+            <span className="text-blue-700 font-medium">Auto-refreshes</span>
           </div>
         </div>
 
@@ -301,7 +301,7 @@ export default function CollectionLiveTracker({
           {request.collectorName ? (
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-14 h-14 rounded-2xl overflow-hidden bg-emerald-100 border-2 border-emerald-300 flex-shrink-0">
+                <div className="w-14 h-14 rounded-2xl overflow-hidden bg-blue-100 border-2 border-blue-300 flex-shrink-0">
                   <img
                     src={request.collectorAvatar || "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100"}
                     alt={request.collectorName}
@@ -311,10 +311,10 @@ export default function CollectionLiveTracker({
                 <div>
                   <div className="flex items-center gap-1.5">
                     <h4 className="font-bold text-gray-900 text-sm">{request.collectorName}</h4>
-                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                    <ShieldCheck className="w-4 h-4 text-blue-600" />
                   </div>
                   <p className="text-xs text-gray-500">{request.collectorPhone || "+233 24 555 1234"}</p>
-                  <p className="text-[11px] font-semibold text-emerald-700 mt-0.5">
+                  <p className="text-[11px] font-semibold text-blue-700 mt-0.5">
                     Verified Independent Operator
                   </p>
                 </div>
@@ -331,7 +331,7 @@ export default function CollectionLiveTracker({
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Agreed Price:</span>
-                  <span className="font-bold text-emerald-800">
+                  <span className="font-bold text-blue-800">
                     GH₵ {request.agreedPrice || request.initialEstimatedPrice || 45}
                   </span>
                 </div>
@@ -342,7 +342,7 @@ export default function CollectionLiveTracker({
                 <button
                   type="button"
                   onClick={handleSimulatedCall}
-                  className="px-3 py-2.5 bg-gray-100 hover:bg-emerald-50 hover:text-emerald-800 text-gray-700 rounded-xl text-xs font-semibold transition-colors flex items-center justify-center gap-1.5"
+                  className="px-3 py-2.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-800 text-gray-700 rounded-xl text-xs font-semibold transition-colors flex items-center justify-center gap-1.5"
                 >
                   <Phone className="w-3.5 h-3.5" />
                   <span>Call Rider</span>
@@ -350,7 +350,7 @@ export default function CollectionLiveTracker({
                 <button
                   type="button"
                   onClick={onOpenNegotiation}
-                  className="px-3 py-2.5 bg-gray-100 hover:bg-emerald-50 hover:text-emerald-800 text-gray-700 rounded-xl text-xs font-semibold transition-colors flex items-center justify-center gap-1.5"
+                  className="px-3 py-2.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-800 text-gray-700 rounded-xl text-xs font-semibold transition-colors flex items-center justify-center gap-1.5"
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
                   <span>Messages</span>
@@ -358,7 +358,7 @@ export default function CollectionLiveTracker({
               </div>
 
               {callAlert && (
-                <div className="p-2.5 bg-emerald-100 text-emerald-900 text-xs rounded-xl text-center font-medium animate-in fade-in">
+                <div className="p-2.5 bg-blue-100 text-blue-900 text-xs rounded-xl text-center font-medium animate-in fade-in">
                   📞 Simulated call connected to {request.collectorPhone}!
                 </div>
               )}
@@ -367,7 +367,7 @@ export default function CollectionLiveTracker({
               {request.completionPhotoUrl && (
                 <div className="space-y-1 pt-2 border-t border-gray-100">
                   <span className="text-xs font-semibold text-gray-700 flex items-center gap-1">
-                    <Camera className="w-3.5 h-3.5 text-emerald-600" />
+                    <Camera className="w-3.5 h-3.5 text-blue-600" />
                     Collection Evidence Photo
                   </span>
                   <div className="rounded-xl overflow-hidden border border-gray-200 aspect-video">
@@ -384,9 +384,9 @@ export default function CollectionLiveTracker({
               {request.status === "completed" && (
                 <button
                   onClick={onPayNow}
-                  className="w-full py-3 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors shadow-md flex items-center justify-center gap-2"
+                  className="w-full py-3 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors shadow-md flex items-center justify-center gap-2"
                 >
-                  <CreditCard className="w-4 h-4 text-emerald-300" />
+                  <CreditCard className="w-4 h-4 text-blue-300" />
                   <span>Pay GH₵ {request.agreedPrice || 45} (Cash or MoMo)</span>
                 </button>
               )}

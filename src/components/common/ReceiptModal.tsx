@@ -31,10 +31,10 @@ export default function ReceiptModal({ request, onClose }: ReceiptModalProps) {
       <div className="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-gray-200 overflow-hidden animate-in zoom-in-95 print:shadow-none print:border-none print:m-0 print:w-full">
         
         {/* Receipt Header */}
-        <div className="bg-[#14532D] text-white p-5 text-center relative print:bg-white print:text-black print:border-b">
+        <div className="bg-[#123B66] text-white p-5 text-center relative print:bg-white print:text-black print:border-b">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-emerald-200 hover:text-white p-1 rounded-full hover:bg-white/10 print:hidden"
+            className="absolute top-4 right-4 text-blue-200 hover:text-white p-1 rounded-full hover:bg-white/10 print:hidden"
           >
             <X className="w-5 h-5" />
           </button>
@@ -46,7 +46,7 @@ export default function ReceiptModal({ request, onClose }: ReceiptModalProps) {
               className="h-9 w-auto object-contain"
             />
           </div>
-          <p className="text-xs text-emerald-200 mt-0.5 print:text-gray-700">Official Service &amp; Payment Receipt</p>
+          <p className="text-xs text-blue-200 mt-0.5 print:text-gray-700">Official Service &amp; Payment Receipt</p>
           <div className="mt-3 inline-block bg-white/10 px-3 py-1 rounded-full text-[11px] font-mono tracking-wider">
             {request.receiptNumber || `REC-GH-2026-${request.id.slice(-4)}`}
           </div>
@@ -56,14 +56,14 @@ export default function ReceiptModal({ request, onClose }: ReceiptModalProps) {
         <div className="p-6 space-y-4 text-xs text-gray-700">
           
           {/* Amount Box */}
-          <div className="bg-emerald-50 rounded-xl p-4 text-center border border-emerald-100">
+          <div className="bg-blue-50 rounded-xl p-4 text-center border border-blue-100">
             <span className="text-gray-500 text-[11px] uppercase tracking-wider block font-semibold">
               Amount Paid
             </span>
-            <span className="text-3xl font-extrabold text-[#14532D] block mt-1">
+            <span className="text-3xl font-extrabold text-[#123B66] block mt-1">
               GH₵ {amount.toFixed(2)}
             </span>
-            <span className="text-[11px] text-emerald-700 font-medium mt-1 inline-flex items-center gap-1">
+            <span className="text-[11px] text-blue-700 font-medium mt-1 inline-flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5" />
               Negotiated Rate &bull; Payment Verified
             </span>
@@ -88,7 +88,7 @@ export default function ReceiptModal({ request, onClose }: ReceiptModalProps) {
             <div className="pt-2 flex justify-between">
               <span className="text-gray-500">Payment Mode:</span>
               <span className="font-semibold text-gray-800 capitalize flex items-center gap-1">
-                <CreditCard className="w-3.5 h-3.5 text-emerald-700" />
+                <CreditCard className="w-3.5 h-3.5 text-blue-700" />
                 {request.paymentMethod === "momo" 
                   ? `${request.momoProvider || "Mobile Money"} (${request.momoPhoneNumber || "Direct"})` 
                   : "Direct Cash to Collector"}
@@ -122,7 +122,7 @@ export default function ReceiptModal({ request, onClose }: ReceiptModalProps) {
               <div className="text-right">
                 <div className="font-bold text-gray-900">{request.collectorName || "Independent Operator"}</div>
                 <div className="text-[10px] text-gray-500 flex items-center justify-end gap-1">
-                  <Truck className="w-3 h-3 text-emerald-600" />
+                  <Truck className="w-3 h-3 text-blue-600" />
                   {request.collectorTricycle || "Verified Tricycle"}
                 </div>
               </div>
@@ -153,7 +153,7 @@ export default function ReceiptModal({ request, onClose }: ReceiptModalProps) {
           
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-[#14532D] text-white rounded-lg text-xs font-semibold hover:bg-emerald-800 transition-colors"
+            className="px-4 py-2 bg-[#123B66] text-white rounded-lg text-xs font-semibold hover:bg-blue-800 transition-colors"
           >
             Done
           </button>

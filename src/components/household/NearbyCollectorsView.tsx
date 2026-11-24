@@ -65,7 +65,7 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by rider or tricycle model..."
-              className="w-full text-xs pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+              className="w-full text-xs pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
             />
           </div>
 
@@ -74,7 +74,7 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
             <select
               value={selectedAreaFilter}
               onChange={(e) => setSelectedAreaFilter(e.target.value)}
-              className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden bg-white"
+              className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden bg-white"
             >
               <option value="all">All Ghanaian Municipalities</option>
               <option value="Madina">Madina</option>
@@ -95,11 +95,11 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
               onClick={() => setOnlyOnline(!onlyOnline)}
               className={`w-full text-xs font-semibold px-3 py-2.5 rounded-xl border transition-all flex items-center justify-center gap-2 ${
                 onlyOnline
-                  ? "bg-[#14532D] text-white border-[#14532D]"
+                  ? "bg-[#123B66] text-white border-[#123B66]"
                   : "bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-100"
               }`}
             >
-              <span className={`w-2 h-2 rounded-full ${onlyOnline ? "bg-emerald-400" : "bg-gray-400"}`}></span>
+              <span className={`w-2 h-2 rounded-full ${onlyOnline ? "bg-blue-400" : "bg-gray-400"}`}></span>
               <span>Online Operators Only</span>
             </button>
           </div>
@@ -115,19 +115,19 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
           return (
             <div
               key={col.id}
-              className="bg-white rounded-2xl p-5 border border-gray-200 shadow-xs hover:shadow-card hover:border-emerald-300 transition-all flex flex-col justify-between space-y-4"
+              className="bg-white rounded-2xl p-5 border border-gray-200 shadow-xs hover:shadow-card hover:border-blue-300 transition-all flex flex-col justify-between space-y-4"
             >
               <div>
                 {/* Top: Avatar, Status & Verified */}
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="relative">
-                      <div className="w-14 h-14 rounded-2xl overflow-hidden bg-emerald-100 border border-emerald-200">
+                      <div className="w-14 h-14 rounded-2xl overflow-hidden bg-blue-100 border border-blue-200">
                         <img src={col.avatar} alt={col.name} className="w-full h-full object-cover" />
                       </div>
                       <span
                         className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white ${
-                          col.isOnline ? "bg-emerald-500" : "bg-gray-400"
+                          col.isOnline ? "bg-blue-500" : "bg-gray-400"
                         }`}
                         title={col.isOnline ? "Online & Ready" : "Offline"}
                       />
@@ -138,7 +138,7 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
                         <h3 className="font-bold text-gray-900 text-sm">{col.name}</h3>
                         {col.isVerified && (
                           <span title="Verified Driver">
-                            <ShieldCheck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                            <ShieldCheck className="w-4 h-4 text-blue-600 flex-shrink-0" />
                           </span>
                         )}
                       </div>
@@ -151,7 +151,7 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
                     </div>
                   </div>
 
-                  <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                  <span className="text-[11px] font-semibold text-blue-800 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
                     ~{mockDist} km
                   </span>
                 </div>
@@ -160,7 +160,7 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
                 <div className="mt-4 p-3 bg-gray-50 rounded-xl space-y-1 text-xs border border-gray-100">
                   <div className="flex items-center justify-between text-gray-600">
                     <span className="flex items-center gap-1 text-gray-500">
-                      <Truck className="w-3.5 h-3.5 text-emerald-600" />
+                      <Truck className="w-3.5 h-3.5 text-blue-600" />
                       Tricycle:
                     </span>
                     <span className="font-bold text-gray-900">{col.tricycleModel}</span>
@@ -171,7 +171,7 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
                   </div>
                   <div className="flex items-center justify-between text-gray-600">
                     <span className="text-gray-500">Completed Pickups:</span>
-                    <span className="font-semibold text-emerald-700">{col.completedJobs} loads</span>
+                    <span className="font-semibold text-blue-700">{col.completedJobs} loads</span>
                   </div>
                 </div>
 
@@ -180,7 +180,7 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
                   {col.operatingAreas.map((area) => (
                     <span
                       key={area}
-                      className="text-[10px] bg-emerald-50/70 text-emerald-800 font-medium px-2 py-0.5 rounded-md"
+                      className="text-[10px] bg-blue-50/70 text-blue-800 font-medium px-2 py-0.5 rounded-md"
                     >
                       {area}
                     </span>
@@ -200,7 +200,7 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
                 <button
                   type="button"
                   onClick={() => onRequestDirect(col)}
-                  className="px-3 py-2 bg-[#14532D] hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition-colors text-center"
+                  className="px-3 py-2 bg-[#123B66] hover:bg-blue-800 text-white rounded-xl text-xs font-bold transition-colors text-center"
                 >
                   Request Pickup
                 </button>
@@ -217,7 +217,7 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
           <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-gray-200 animate-in zoom-in-95 space-y-4">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-16 h-16 rounded-2xl overflow-hidden bg-emerald-100 border-2 border-emerald-300">
+                <div className="w-16 h-16 rounded-2xl overflow-hidden bg-blue-100 border-2 border-blue-300">
                   <img
                     src={selectedCollector.avatar}
                     alt={selectedCollector.name}
@@ -228,11 +228,11 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
                   <div className="flex items-center gap-1.5">
                     <h3 className="text-base font-bold text-gray-900">{selectedCollector.name}</h3>
                     {selectedCollector.isVerified && (
-                      <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                      <ShieldCheck className="w-4 h-4 text-blue-600" />
                     )}
                   </div>
                   <p className="text-xs text-gray-500">{selectedCollector.location}</p>
-                  <p className="text-xs text-emerald-700 font-semibold mt-0.5">
+                  <p className="text-xs text-blue-700 font-semibold mt-0.5">
                     {selectedCollector.isOnline ? "● Currently Online & Ready for Dispatch" : "○ Currently Offline"}
                   </p>
                 </div>
@@ -245,7 +245,7 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
               </button>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 text-center py-2 bg-emerald-50 rounded-xl border border-emerald-100">
+            <div className="grid grid-cols-3 gap-2 text-center py-2 bg-blue-50 rounded-xl border border-blue-100">
               <div>
                 <span className="text-[10px] text-gray-500 font-medium">Customer Rating</span>
                 <div className="text-sm font-bold text-gray-900 flex items-center justify-center gap-1 mt-0.5">
@@ -255,7 +255,7 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
               </div>
               <div>
                 <span className="text-[10px] text-gray-500 font-medium">Verified Jobs</span>
-                <div className="text-sm font-bold text-emerald-800 mt-0.5">
+                <div className="text-sm font-bold text-blue-800 mt-0.5">
                   {selectedCollector.completedJobs}
                 </div>
               </div>
@@ -301,7 +301,7 @@ export default function NearbyCollectorsView({ onRequestDirect }: NearbyCollecto
                   setSelectedCollector(null);
                   onRequestDirect(c);
                 }}
-                className="px-5 py-2 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors"
+                className="px-5 py-2 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors"
               >
                 Request Pickup from {selectedCollector.name.split(" ")[0]}
               </button>

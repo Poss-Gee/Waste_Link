@@ -17,14 +17,14 @@ interface ToastContainerProps {
 }
 
 const TOAST_STYLES: Record<ToastType, string> = {
-  success: "bg-[#14532D] text-white border-[#16A34A]",
+  success: "bg-[#123B66] text-white border-[#2563EB]",
   error: "bg-rose-700 text-white border-rose-500",
-  warning: "bg-amber-500 text-[#17231B] border-amber-600",
+  warning: "bg-amber-500 text-[#172B43] border-amber-600",
   info: "bg-slate-800 text-white border-slate-600",
 };
 
 const TOAST_ICONS: Record<ToastType, React.ReactNode> = {
-  success: <CheckCircle2 className="w-4 h-4 text-emerald-300 flex-shrink-0" />,
+  success: <CheckCircle2 className="w-4 h-4 text-blue-300 flex-shrink-0" />,
   error: <AlertCircle className="w-4 h-4 text-rose-200 flex-shrink-0" />,
   warning: <AlertTriangle className="w-4 h-4 text-amber-950 flex-shrink-0" />,
   info: <Info className="w-4 h-4 text-sky-300 flex-shrink-0" />,

@@ -49,7 +49,7 @@ export default function CollectorVerificationView() {
       {/* Status Banner */}
       <div className={`rounded-2xl p-6 text-white shadow-card ${
         collector.isVerified
-          ? "bg-[#14532D]"
+          ? "bg-[#123B66]"
           : collector.verificationStatus === "pending"
           ? "bg-amber-600"
           : "bg-rose-700"
@@ -81,8 +81,8 @@ export default function CollectorVerificationView() {
       </div>
 
       {saveNotice && (
-        <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+        <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl text-xs text-blue-900 flex items-center gap-2">
+          <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0" />
           <span>Vehicle details updated successfully and queued for audit!</span>
         </div>
       )}
@@ -91,12 +91,12 @@ export default function CollectorVerificationView() {
       <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-xs space-y-6">
         <div className="flex items-center justify-between border-b border-gray-100 pb-3">
           <h3 className="font-bold text-sm text-gray-900 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-emerald-600" />
+            <FileText className="w-4 h-4 text-blue-600" />
             Registered Legal Credentials
           </h3>
           <button
             onClick={() => setIsEditing(!isEditing)}
-            className="text-xs font-semibold text-emerald-700 hover:text-emerald-900"
+            className="text-xs font-semibold text-blue-700 hover:text-blue-900"
           >
             {isEditing ? "Cancel" : "Update Documents"}
           </button>
@@ -162,7 +162,7 @@ export default function CollectorVerificationView() {
               </button>
               <button
                 type="submit"
-                className="px-5 py-2 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800"
+                className="px-5 py-2 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800"
               >
                 Save &amp; Resubmit
               </button>
@@ -175,7 +175,7 @@ export default function CollectorVerificationView() {
               <p className="font-mono font-bold text-gray-900 text-sm">
                 {collector.ghanaCardNumber || "GHA-712398452-9"}
               </p>
-              <span className="text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
+              <span className="text-[10px] text-blue-700 font-semibold flex items-center gap-1">
                 <CheckCircle2 className="w-3 h-3" />
                 Verified with National Identification Authority
               </span>
@@ -206,7 +206,7 @@ export default function CollectorVerificationView() {
               <p className="font-bold text-gray-900 text-sm">
                 {collector.operatingAreas.join(", ")}
               </p>
-              <span className="text-[10px] text-emerald-700 font-semibold">
+              <span className="text-[10px] text-blue-700 font-semibold">
                 Accra Waste Assembly Registered
               </span>
             </div>

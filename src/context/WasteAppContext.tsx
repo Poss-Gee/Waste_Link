@@ -133,10 +133,33 @@ export function WasteAppProvider({ children }: { children: React.ReactNode }) {
       const savedLogs = localStorage.getItem(STORAGE_KEYS.ACTIVITY_LOGS);
       const savedQueue = localStorage.getItem(STORAGE_KEYS.OFFLINE_QUEUE);
 
-      if (savedUser) setCurrentUser(JSON.parse(savedUser));
-      if (savedHouseholds) setHouseholds(JSON.parse(savedHouseholds));
-      if (savedCollectors) setCollectors(JSON.parse(savedCollectors));
-      if (savedRequests) setRequests(JSON.parse(savedRequests));
+      if (savedUser) {
+        const parsedUser = JSON.parse(savedUser);
+        if (parsedUser?.avatar?.includes("unsplash.com")) {
+          parsedUser.avatar = "/avatars/cartoon-1.svg";
+        }
+        setCurrentUser(parsedUser);
+      }
+      if (savedHouseholds) {
+        const list = JSON.parse(savedHouseholds).map((h: HouseholdUser, idx: number) =>
+          h.avatar?.includes("unsplash.com") ? { ...h, avatar: `/avatars/cartoon-${(idx % 12) + 1}.svg` } : h
+        );
+        setHouseholds(list);
+      }
+      if (savedCollectors) {
+        const list = JSON.parse(savedCollectors).map((c: CollectorUser, idx: number) =>
+          c.avatar?.includes("unsplash.com") ? { ...c, avatar: `/avatars/cartoon-${((idx + 2) % 12) + 1}.svg` } : c
+        );
+        setCollectors(list);
+      }
+      if (savedRequests) {
+        const list = JSON.parse(savedRequests).map((r: CollectionRequest, idx: number) => ({
+          ...r,
+          householdAvatar: r.householdAvatar?.includes("unsplash.com") ? `/avatars/cartoon-${(idx % 12) + 1}.svg` : r.householdAvatar,
+          collectorAvatar: r.collectorAvatar?.includes("unsplash.com") ? `/avatars/cartoon-${((idx + 3) % 12) + 1}.svg` : r.collectorAvatar,
+        }));
+        setRequests(list);
+      }
       if (savedComplaints) setComplaints(JSON.parse(savedComplaints));
       if (savedNotifs) setNotifications(JSON.parse(savedNotifs));
       if (savedLogs) setActivityLogs(JSON.parse(savedLogs));

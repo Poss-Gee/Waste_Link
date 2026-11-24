@@ -83,7 +83,7 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
           particleCount: 100,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ["#14532D", "#16A34A", "#86efac", "#eab308"],
+          colors: ["#123B66", "#2563EB", "#86efac", "#eab308"],
         });
       } catch (err) {
         // Safe fallback
@@ -106,7 +106,7 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
       
       {/* Header */}
       <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-xs text-center">
-        <div className="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-2xl flex items-center justify-center mx-auto mb-3">
+        <div className="w-12 h-12 bg-blue-100 text-blue-800 rounded-2xl flex items-center justify-center mx-auto mb-3">
           <CreditCard className="w-6 h-6" />
         </div>
         <h2 className="text-xl font-bold text-gray-900">Payment for Waste Collection</h2>
@@ -115,14 +115,14 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
         </p>
 
         {/* Negotiated Amount Callout */}
-        <div className="mt-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 inline-block w-full">
+        <div className="mt-4 p-4 bg-blue-50 rounded-xl border border-blue-100 inline-block w-full">
           <span className="text-[11px] uppercase tracking-wider text-gray-500 font-semibold block">
             Binding Negotiated Total
           </span>
-          <span className="text-3xl font-black text-[#14532D] mt-1 block">
+          <span className="text-3xl font-black text-[#123B66] mt-1 block">
             GH₵ {amount.toFixed(2)}
           </span>
-          <span className="text-[11px] text-emerald-700 font-medium inline-flex items-center gap-1 mt-1">
+          <span className="text-[11px] text-blue-700 font-medium inline-flex items-center gap-1 mt-1">
             <ShieldCheck className="w-3.5 h-3.5" />
             Collection Completed &amp; Verified
           </span>
@@ -131,9 +131,9 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
 
       {paymentResult ? (
         /* Successful Payment State */
-        <div className="bg-white rounded-2xl p-6 border border-emerald-300 shadow-card space-y-5 animate-in zoom-in-95">
+        <div className="bg-white rounded-2xl p-6 border border-blue-300 shadow-card space-y-5 animate-in zoom-in-95">
           <div className="text-center space-y-2">
-            <div className="w-14 h-14 bg-emerald-600 text-white rounded-full flex items-center justify-center mx-auto shadow-md">
+            <div className="w-14 h-14 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto shadow-md">
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h3 className="text-lg font-bold text-gray-900">Payment Successfully Recorded!</h3>
@@ -169,7 +169,7 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
             </button>
             <button
               onClick={onPaymentSuccess}
-              className="py-3 px-4 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+              className="py-3 px-4 bg-[#123B66] text-white rounded-xl text-xs font-bold hover:bg-blue-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
             >
               <span>Back to Dashboard</span>
               <ArrowRight className="w-4 h-4" />
@@ -205,18 +205,18 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
                 value={reviewComment}
                 onChange={(e) => setReviewComment(e.target.value)}
                 placeholder="Leave feedback: e.g. Very fast, polite, and swept gate area..."
-                className="w-full text-xs px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+                className="w-full text-xs px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
               />
               <button
                 type="button"
                 onClick={handleReviewSubmit}
-                className="text-xs font-bold text-emerald-800 bg-emerald-100 hover:bg-emerald-200 px-4 py-1.5 rounded-lg transition-colors"
+                className="text-xs font-bold text-blue-800 bg-blue-100 hover:bg-blue-200 px-4 py-1.5 rounded-lg transition-colors"
               >
                 Submit Rating
               </button>
             </div>
           ) : (
-            <div className="text-center p-3 bg-emerald-50 rounded-xl text-xs font-medium text-emerald-900">
+            <div className="text-center p-3 bg-blue-50 rounded-xl text-xs font-medium text-blue-900">
               ✓ Thank you! Your rating has been recorded on the collector&apos;s public profile.
             </div>
           )}
@@ -235,11 +235,11 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
                 onClick={() => setPaymentMethod("momo")}
                 className={`p-3.5 rounded-xl border text-left transition-all flex items-center gap-3 ${
                   paymentMethod === "momo"
-                    ? "border-emerald-600 bg-emerald-50/80 text-emerald-950 font-bold shadow-xs"
+                    ? "border-blue-600 bg-blue-50/80 text-blue-950 font-bold shadow-xs"
                     : "border-gray-200 text-gray-700 hover:border-gray-300 bg-white"
                 }`}
               >
-                <Smartphone className="w-5 h-5 text-emerald-700" />
+                <Smartphone className="w-5 h-5 text-blue-700" />
                 <div>
                   <span className="block text-xs">Mobile Money</span>
                   <span className="text-[10px] text-gray-500 font-normal">MTN / Telecel / AT</span>
@@ -251,11 +251,11 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
                 onClick={() => setPaymentMethod("cash")}
                 className={`p-3.5 rounded-xl border text-left transition-all flex items-center gap-3 ${
                   paymentMethod === "cash"
-                    ? "border-emerald-600 bg-emerald-50/80 text-emerald-950 font-bold shadow-xs"
+                    ? "border-blue-600 bg-blue-50/80 text-blue-950 font-bold shadow-xs"
                     : "border-gray-200 text-gray-700 hover:border-gray-300 bg-white"
                 }`}
               >
-                <Banknote className="w-5 h-5 text-emerald-700" />
+                <Banknote className="w-5 h-5 text-blue-700" />
                 <div>
                   <span className="block text-xs">Direct Cash</span>
                   <span className="text-[10px] text-gray-500 font-normal">Handed to collector</span>
@@ -278,7 +278,7 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
                       onClick={() => setMomoProvider(prov)}
                       className={`p-2.5 rounded-xl border text-center text-xs font-semibold transition-all ${
                         momoProvider === prov
-                          ? "bg-[#14532D] text-white border-[#14532D]"
+                          ? "bg-[#123B66] text-white border-[#123B66]"
                           : "bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100"
                       }`}
                     >
@@ -300,7 +300,7 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
                     if (phoneError) setPhoneError(null);
                   }}
                   placeholder="+233 24 000 0000"
-                  className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-emerald-500 focus:outline-hidden font-mono ${
+                  className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:outline-hidden font-mono ${
                     phoneError ? "border-rose-400 bg-rose-50/40" : "border-gray-300"
                   }`}
                 />
@@ -329,7 +329,7 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
             <button
               type="submit"
               disabled={isProcessing}
-              className="w-full py-3.5 bg-[#14532D] text-white font-bold rounded-xl text-xs hover:bg-emerald-800 transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
+              className="w-full py-3.5 bg-[#123B66] text-white font-bold rounded-xl text-xs hover:bg-blue-800 transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
             >
               {isProcessing ? (
                 <span>Simulating Secure MoMo Gateway...</span>

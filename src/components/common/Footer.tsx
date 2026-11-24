@@ -5,7 +5,7 @@ import { Recycle, ShieldCheck, Heart, MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#14532D] text-emerald-100 border-t border-[#0f3d21] mt-auto">
+    <footer className="bg-[#123B66] text-blue-100 border-t border-[#0D2C4D] mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
@@ -18,11 +18,11 @@ export default function Footer() {
                 className="h-10 w-auto object-contain"
               />
             </div>
-            <p className="text-xs text-emerald-200/90 leading-relaxed">
+            <p className="text-xs text-blue-200/90 leading-relaxed">
               Connecting Homes. Empowering Collectors. Cleaner Communities. An independent Ghanaian digital platform linking households with verified tricycle waste collectors.
             </p>
-            <div className="flex items-center gap-1.5 text-[11px] text-emerald-300">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <div className="flex items-center gap-1.5 text-[11px] text-blue-300">
+              <ShieldCheck className="w-4 h-4 text-blue-400" />
               <span>Independent Platform &bull; Non-Zoomlion Dependent</span>
             </div>
           </div>
@@ -30,10 +30,10 @@ export default function Footer() {
           {/* Ghanaian Coverage Zones */}
           <div>
             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3 flex items-center gap-1">
-              <MapPin className="w-3.5 h-3.5 text-emerald-400" />
+              <MapPin className="w-3.5 h-3.5 text-blue-400" />
               Pilot Operational Hubs
             </h4>
-            <ul className="text-xs space-y-1.5 text-emerald-200/80">
+            <ul className="text-xs space-y-1.5 text-blue-200/80">
               <li>&bull; Madina &amp; Adenta Municipalities</li>
               <li>&bull; East Legon &amp; Boundary Road</li>
               <li>&bull; Dansoman &amp; Greater Ablekuma</li>
@@ -48,7 +48,7 @@ export default function Footer() {
             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3">
               On-Demand Services
             </h4>
-            <ul className="text-xs space-y-1.5 text-emerald-200/80">
+            <ul className="text-xs space-y-1.5 text-blue-200/80">
               <li>&bull; Domestic Household Rubbish</li>
               <li>&bull; Separated Plastic &amp; Recyclables</li>
               <li>&bull; Kitchen &amp; Organic Compostable</li>
@@ -63,16 +63,16 @@ export default function Footer() {
             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3">
               Inquiries &amp; Verification
             </h4>
-            <div className="text-xs space-y-2 text-emerald-200/80">
+            <div className="text-xs space-y-2 text-blue-200/80">
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-emerald-400" />
+                <Phone className="w-3.5 h-3.5 text-blue-400" />
                 <span>+233 24 100 0001 (Toll-Free Pilot)</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-emerald-400" />
+                <Mail className="w-3.5 h-3.5 text-blue-400" />
                 <span>support@wastelink.gh</span>
               </div>
-              <p className="text-[11px] text-emerald-300/80 pt-2 border-t border-emerald-800">
+              <p className="text-[11px] text-blue-300/80 pt-2 border-t border-blue-800">
                 PWA Ready &bull; Offline Capable Sync &bull; Built for Ghanaian Tricycle Operators (Aboboyaa / Motor King)
               </p>
             </div>
@@ -80,7 +80,7 @@ export default function Footer() {
 
         </div>
 
-        <div className="mt-8 pt-6 border-t border-emerald-900/60 flex flex-col sm:flex-row items-center justify-between text-xs text-emerald-300/70 gap-2">
+        <div className="mt-8 pt-6 border-t border-blue-900/60 flex flex-col sm:flex-row items-center justify-between text-xs text-blue-300/70 gap-2">
           <p>&copy; {new Date().getFullYear()} WasteLink Ghana. All rights reserved.</p>
           <p className="flex items-center gap-1">
             Developed with pride for cleaner Ghanaian communities
