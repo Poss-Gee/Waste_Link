@@ -16,6 +16,7 @@ import {
   Truck,
   RotateCcw,
 } from "lucide-react";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
 
 interface PriceNegotiationChatProps {
   request: CollectionRequest;
@@ -26,12 +27,17 @@ export default function PriceNegotiationChat({
   request,
   onNegotiationComplete,
 }: PriceNegotiationChatProps) {
-  const { currentUser, proposePrice, acceptPriceOffer, rejectPriceOffer } = useWasteApp();
+  const { currentUser, proposePrice, acceptPriceOffer, rejectPriceOffer, showToast } = useWasteApp();
   const [counterAmount, setCounterAmount] = useState<number>(
     request.initialEstimatedPrice ? Math.max(30, request.initialEstimatedPrice - 5) : 40
   );
   const [counterNote, setCounterNote] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [offerError, setOfferError] = useState<string | null>(null);
+  const [pendingAction, setPendingAction] = useState<{
+    type: "accept" | "reject";
+    offer: PriceOffer;
+  } | null>(null);
 
   // Find latest pending offer
   const latestOffer = [...request.negotiationHistory].reverse()[0];
@@ -44,7 +50,12 @@ export default function PriceNegotiationChat({
 
   const handleSendCounter = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!counterAmount || counterAmount <= 0) return;
+    if (!counterAmount || counterAmount < 10 || counterAmount > 500) {
+      setOfferError("Please enter a valid price between GH₵ 10 and GH₵ 500.");
+      showToast("Offer amount must be between GH₵ 10 and GH₵ 500.", "error");
+      return;
+    }
+    setOfferError(null);
     setIsSubmitting(true);
 
     setTimeout(() => {
@@ -55,18 +66,25 @@ export default function PriceNegotiationChat({
       );
       setCounterNote("");
       setIsSubmitting(false);
+      showToast(`Price proposal of GH₵ ${counterAmount} sent!`, "success");
     }, 400);
   };
 
-  const handleAccept = (offerId: string) => {
-    acceptPriceOffer(request.id, offerId);
-    setTimeout(() => {
-      onNegotiationComplete();
-    }, 500);
-  };
+  const confirmPendingAction = () => {
+    if (!pendingAction) return;
+    const { type, offer } = pendingAction;
+    setPendingAction(null);
 
-  const handleReject = (offerId: string) => {
-    rejectPriceOffer(request.id, offerId);
+    if (type === "accept") {
+      acceptPriceOffer(request.id, offer.id);
+      showToast(`Price agreed at GH₵ ${offer.amount}! Collection confirmed.`, "success");
+      setTimeout(() => {
+        onNegotiationComplete();
+      }, 500);
+    } else {
+      rejectPriceOffer(request.id, offer.id);
+      showToast("Offer declined. You can propose a counteroffer below.", "info");
+    }
   };
 
   return (
@@ -208,16 +226,16 @@ export default function PriceNegotiationChat({
                   <div className="pt-2 flex items-center gap-2 border-t border-gray-100">
                     <button
                       type="button"
-                      onClick={() => handleAccept(offer.id)}
-                      className="flex-1 py-1.5 px-3 bg-[#14532D] text-white rounded-lg font-bold text-xs hover:bg-emerald-800 transition-colors flex items-center justify-center gap-1 shadow-xs"
+                      onClick={() => setPendingAction({ type: "accept", offer })}
+                      className="flex-1 py-2 px-3 bg-[#14532D] text-white rounded-lg font-bold text-xs hover:bg-emerald-800 transition-colors flex items-center justify-center gap-1 shadow-xs"
                     >
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300" />
                       <span>Accept GH₵{offer.amount}</span>
                     </button>
                     <button
                       type="button"
-                      onClick={() => handleReject(offer.id)}
-                      className="py-1.5 px-2.5 bg-gray-100 text-gray-600 rounded-lg font-semibold text-xs hover:bg-rose-50 hover:text-rose-600 transition-colors"
+                      onClick={() => setPendingAction({ type: "reject", offer })}
+                      className="py-2 px-3 bg-gray-100 text-gray-600 rounded-lg font-semibold text-xs hover:bg-rose-50 hover:text-rose-600 transition-colors"
                     >
                       Decline
                     </button>
@@ -293,6 +311,13 @@ export default function PriceNegotiationChat({
               </button>
             </div>
 
+            {offerError && (
+              <p className="text-[11px] text-rose-600 flex items-center gap-1">
+                <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                <span>{offerError}</span>
+              </p>
+            )}
+
             <p className="text-[11px] text-gray-400 flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               Per WasteLink policy, the collection is only confirmed once both customer and collector agree.
@@ -301,6 +326,28 @@ export default function PriceNegotiationChat({
         </div>
       )}
 
+      <ConfirmDialog
+        isOpen={!!pendingAction}
+        title={
+          pendingAction?.type === "accept"
+            ? `Confirm Agreed Price: GH₵ ${pendingAction.offer.amount}?`
+            : "Decline This Price Offer?"
+        }
+        description={
+          pendingAction?.type === "accept"
+            ? "Once accepted, this fee becomes binding for both parties and the collector will be dispatched to your location."
+            : "The sender will be notified that their offer was declined. You can immediately send a counteroffer."
+        }
+        confirmLabel={
+          pendingAction?.type === "accept"
+            ? `Agree to GH₵ ${pendingAction.offer.amount}`
+            : "Decline Offer"
+        }
+        variant={pendingAction?.type === "reject" ? "danger" : "primary"}
+        onConfirm={confirmPendingAction}
+        onCancel={() => setPendingAction(null)}
+      />
     </div>
   );
 }
+

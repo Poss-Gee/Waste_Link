@@ -21,7 +21,7 @@ interface IncomingRequestsViewProps {
 }
 
 export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsViewProps) {
-  const { currentUser, requests, proposePrice } = useWasteApp();
+  const { currentUser, requests, proposePrice, showToast } = useWasteApp();
   const collector = currentUser as CollectorUser;
 
   // Selected request for pricing proposal
@@ -46,20 +46,25 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
 
   const handleSendProposal = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedReq || proposedAmount <= 0) return;
+    if (!selectedReq || proposedAmount < 10 || proposedAmount > 500) {
+      showToast("Please enter a fair proposal between GH₵ 10 and GH₵ 500.", "error");
+      return;
+    }
     setIsSubmitting(true);
 
     setTimeout(() => {
       proposePrice(selectedReq.id, proposedAmount, proposalNote);
       setIsSubmitting(false);
-      setSuccessToast(`Price proposal of GH₵${proposedAmount} sent to ${selectedReq.householdName}!`);
+      const msg = `Price proposal of GH₵${proposedAmount} sent to ${selectedReq.householdName}!`;
+      setSuccessToast(msg);
+      showToast(msg, "success");
       const targetId = selectedReq.id;
       setSelectedReq(null);
       setTimeout(() => {
         setSuccessToast(null);
         onOpenJob(targetId);
-      }, 1800);
-    }, 600);
+      }, 1500);
+    }, 500);
   };
 
   return (
@@ -83,8 +88,12 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
       {/* Requests Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {openRequests.length === 0 ? (
-          <div className="md:col-span-2 bg-white rounded-2xl p-12 text-center text-xs text-gray-400 border border-gray-200">
-            No active unassigned pickup requests in your operational corridors right now. Check back shortly as households post in real-time.
+          <div className="md:col-span-2 bg-white rounded-2xl p-12 text-center border border-[#E5EAE4] space-y-2">
+            <Truck className="w-10 h-10 text-gray-300 mx-auto" />
+            <h3 className="text-sm font-bold text-[#17231B]">No Open Pickup Requests</h3>
+            <p className="text-xs text-[#647067] max-w-md mx-auto">
+              There are no active unassigned pickup requests in {collector.operatingAreas.join(", ")} right now. Check back shortly as households post in real-time.
+            </p>
           </div>
         ) : (
           openRequests.map((req, idx) => {
@@ -283,3 +292,4 @@ export default function IncomingRequestsView({ onOpenJob }: IncomingRequestsView
     </div>
   );
 }
+

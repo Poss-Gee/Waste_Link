@@ -15,6 +15,7 @@ import {
   OfflineAction,
   PriceOffer,
 } from "@/types";
+import { ToastMessage, ToastType } from "@/components/common/ToastContainer";
 import {
   INITIAL_HOUSEHOLDS,
   INITIAL_COLLECTORS,
@@ -70,6 +71,11 @@ interface WasteAppContextType {
   toggleCollectorOnline: (collectorId: string) => void;
   markNotificationRead: (notifId: string) => void;
   markAllNotificationsRead: () => void;
+
+  // Global Toast Notifications
+  toasts: ToastMessage[];
+  showToast: (message: string, type?: ToastType) => void;
+  dismissToast: (id: string) => void;
 }
 
 const STORAGE_KEYS = {
@@ -101,6 +107,19 @@ export function WasteAppProvider({ children }: { children: React.ReactNode }) {
   const [offlineQueue, setOfflineQueue] = useState<OfflineAction[]>([]);
   const [isSyncing, setIsSyncing] = useState<boolean>(false);
   const [isHydrated, setIsHydrated] = useState<boolean>(false);
+  const [toasts, setToasts] = useState<ToastMessage[]>([]);
+
+  const dismissToast = (id: string) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  };
+
+  const showToast = (message: string, type: ToastType = "success") => {
+    const id = "toast-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+    setToasts((prev) => [...prev.slice(-3), { id, message, type }]);
+    setTimeout(() => {
+      dismissToast(id);
+    }, 4200);
+  };
 
   // Load from LocalStorage on mount
   useEffect(() => {
@@ -196,6 +215,7 @@ export function WasteAppProvider({ children }: { children: React.ReactNode }) {
     setActivityLogs(INITIAL_ACTIVITY_LOGS);
     setOfflineQueue([]);
     setIsOfflineSimulated(false);
+    showToast("Demo data reset to initial Ghanaian sample dataset.", "info");
   };
 
   // Helper to add activity log
@@ -806,6 +826,9 @@ export function WasteAppProvider({ children }: { children: React.ReactNode }) {
         toggleCollectorOnline,
         markNotificationRead,
         markAllNotificationsRead,
+        toasts,
+        showToast,
+        dismissToast,
       }}
     >
       {children}

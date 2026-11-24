@@ -13,9 +13,9 @@ import {
   Printer,
   Star,
   Sparkles,
+  AlertCircle,
 } from "lucide-react";
 import ReceiptModal from "@/components/common/ReceiptModal";
-import confetti from "canvas-confetti";
 
 interface PaymentViewProps {
   request: CollectionRequest;
@@ -23,11 +23,12 @@ interface PaymentViewProps {
 }
 
 export default function PaymentView({ request, onPaymentSuccess }: PaymentViewProps) {
-  const { processPayment, submitReview, currentUser } = useWasteApp();
+  const { processPayment, submitReview, currentUser, showToast } = useWasteApp();
 
   const [paymentMethod, setPaymentMethod] = useState<"cash" | "momo">("momo");
   const [momoProvider, setMomoProvider] = useState<"MTN MoMo" | "Telecel Cash" | "AT Money">("MTN MoMo");
   const [phoneNumber, setPhoneNumber] = useState(currentUser.phone || "+233 24 456 7890");
+  const [phoneError, setPhoneError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentResult, setPaymentResult] = useState<{
     success: boolean;
@@ -46,6 +47,17 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
 
   const handlePay = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (paymentMethod === "momo") {
+      const normalized = phoneNumber.replace(/[\s-]/g, "");
+      if (!/^(\+233|0)[235]\d{8}$/.test(normalized)) {
+        setPhoneError("Enter a valid Ghanaian MoMo number (e.g. 024 456 7890 or +233 24 456 7890).");
+        showToast("Please enter a valid Ghanaian Mobile Money number.", "error");
+        return;
+      }
+      setPhoneError(null);
+    }
+
     setIsProcessing(true);
 
     try {
@@ -62,9 +74,11 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
 
       setPaymentResult(res);
       setIsProcessing(false);
+      showToast(`Payment of GH₵ ${amount.toFixed(2)} confirmed! Receipt #${res.receiptNumber} generated.`, "success");
 
-      // Trigger celebration confetti
+      // Trigger celebration confetti dynamically
       try {
+        const confetti = (await import("canvas-confetti")).default;
         confetti({
           particleCount: 100,
           spread: 70,
@@ -76,7 +90,7 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
       }
     } catch (err) {
       setIsProcessing(false);
-      alert("Payment processing error. Please retry.");
+      showToast("Payment processing error. Please retry.", "error");
     }
   };
 
@@ -84,6 +98,7 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
     e.preventDefault();
     submitReview(request.id, rating, reviewComment);
     setReviewSubmitted(true);
+    showToast("Thank you! Your rating has been submitted.", "success");
   };
 
   return (
@@ -279,15 +294,26 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
                 </label>
                 <input
                   type="text"
-                  required
                   value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  onChange={(e) => {
+                    setPhoneNumber(e.target.value);
+                    if (phoneError) setPhoneError(null);
+                  }}
                   placeholder="+233 24 000 0000"
-                  className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden font-mono"
+                  className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-emerald-500 focus:outline-hidden font-mono ${
+                    phoneError ? "border-rose-400 bg-rose-50/40" : "border-gray-300"
+                  }`}
                 />
-                <span className="text-[10px] text-gray-400 mt-1 block">
-                  Simulated USSD PIN authorization prompt will trigger.
-                </span>
+                {phoneError ? (
+                  <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                    <span>{phoneError}</span>
+                  </p>
+                ) : (
+                  <span className="text-[10px] text-gray-400 mt-1 block">
+                    Simulated USSD PIN authorization prompt will trigger.
+                  </span>
+                )}
               </div>
             </div>
           ) : (
@@ -335,3 +361,4 @@ export default function PaymentView({ request, onPaymentSuccess }: PaymentViewPr
     </div>
   );
 }
+

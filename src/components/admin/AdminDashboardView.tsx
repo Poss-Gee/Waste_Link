@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useWasteApp } from "@/context/WasteAppContext";
 import {
   Users,
@@ -39,6 +39,10 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
   } = useWasteApp();
 
   const [activeSubTab, setActiveSubTab] = useState<string>(initialTab);
+
+  useEffect(() => {
+    setActiveSubTab(initialTab);
+  }, [initialTab]);
   const [collectorSearch, setCollectorSearch] = useState("");
   const [householdSearch, setHouseholdSearch] = useState("");
   const [requestFilter, setRequestFilter] = useState("all");
@@ -752,3 +756,4 @@ export default function AdminDashboardView({ initialTab = "overview" }: AdminDas
     </div>
   );
 }
+

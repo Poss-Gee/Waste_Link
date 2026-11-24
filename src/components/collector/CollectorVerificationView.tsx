@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 export default function CollectorVerificationView() {
-  const { currentUser } = useWasteApp();
+  const { currentUser, showToast } = useWasteApp();
   const collector = currentUser as CollectorUser;
 
   const [isEditing, setIsEditing] = useState(false);
@@ -22,11 +22,24 @@ export default function CollectorVerificationView() {
   const [tricycleReg, setTricycleReg] = useState(collector.tricycleRegNumber);
   const [model, setModel] = useState(collector.tricycleModel);
   const [saveNotice, setSaveNotice] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!ghanaCard.trim() || ghanaCard.trim().length < 8) {
+      setFormError("Please enter a valid Ghana Card PIN (e.g. GHA-712398452-9).");
+      showToast("Invalid Ghana Card PIN format.", "error");
+      return;
+    }
+    if (!tricycleReg.trim() || tricycleReg.trim().length < 4) {
+      setFormError("Please enter a valid tricycle registration plate.");
+      showToast("Invalid tricycle registration plate.", "error");
+      return;
+    }
+    setFormError(null);
     setSaveNotice(true);
     setIsEditing(false);
+    showToast("Vehicle & Ghana Card credentials updated and queued for review.", "success");
     setTimeout(() => setSaveNotice(false), 3000);
   };
 
@@ -91,6 +104,12 @@ export default function CollectorVerificationView() {
 
         {isEditing ? (
           <form onSubmit={handleSave} className="space-y-4">
+            {formError && (
+              <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-700 flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                <span>{formError}</span>
+              </div>
+            )}
             <div>
               <label className="block text-xs font-semibold text-gray-700 mb-1">
                 National Ghana Card PIN
@@ -198,3 +217,4 @@ export default function CollectorVerificationView() {
     </div>
   );
 }
+

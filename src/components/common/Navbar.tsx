@@ -95,7 +95,7 @@ export default function Navbar({ currentTab, onTabChange }: NavbarProps) {
       : getAdminNav();
 
   return (
-    <header className="bg-white border-b border-[#E5EAE4] sticky top-[37px] z-40 shadow-xs">
+    <header className="bg-white border-b border-[#E5EAE4] sticky top-0 z-40 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           
@@ -103,19 +103,13 @@ export default function Navbar({ currentTab, onTabChange }: NavbarProps) {
           <div className="flex items-center gap-3">
             <button
               onClick={() => onTabChange(currentRole === "admin" ? "overview" : "dashboard")}
-              className="flex items-center gap-2.5 text-left group"
+              className="flex items-center gap-2.5 text-left group shrink-0"
             >
-              <div className="w-10 h-10 rounded-xl bg-[#14532D] flex items-center justify-center text-white shadow-sm group-hover:bg-[#16A34A] transition-colors">
-                <Recycle className="w-5 h-5 text-emerald-300" />
-              </div>
-              <div>
-                <span className="text-lg font-black tracking-tight text-[#17231B] block leading-none">
-                  WasteLink<span className="text-[#16A34A]"> Ghana</span>
-                </span>
-                <span className="text-[10px] text-gray-500 hidden sm:block mt-0.5 tracking-tight">
-                  Independent Tricycle Waste Platform
-                </span>
-              </div>
+              <img
+                src="/logo.png"
+                alt="WasteLink Ghana — Connecting Homes. Empowering Collectors. Cleaner Communities."
+                className="h-10 sm:h-11 w-auto object-contain"
+              />
             </button>
 
             {/* Role indicator pill */}

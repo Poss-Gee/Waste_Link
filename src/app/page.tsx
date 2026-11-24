@@ -1,10 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useWasteApp } from "@/context/WasteAppContext";
+import { WasteAppProvider, useWasteApp } from "@/context/WasteAppContext";
+import DemoBanner from "@/components/common/DemoBanner";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import LandingPageView from "@/components/common/LandingPageView";
+import WheelieBinSplash from "@/components/common/WheelieBinSplash";
+import ToastContainer from "@/components/common/ToastContainer";
 
 // Household Views
 import HouseholdDashboard from "@/components/household/HouseholdDashboard";
@@ -32,18 +35,39 @@ import {
   Truck, 
   Clock, 
   DollarSign, 
-  ShieldCheck, 
-  MessageSquare,
-  AlertTriangle,
-  Menu
+  ShieldCheck,
+  Play,
 } from "lucide-react";
 
-export default function HomeApp() {
-  const { currentRole, switchRole, requests, currentUser } = useWasteApp();
+function WasteLinkMainApp() {
+  const { currentRole, switchRole, requests, currentUser, toasts, dismissToast } = useWasteApp();
 
   const [activeTab, setActiveTab] = useState<string>("dashboard");
   const [selectedRequestId, setSelectedRequestId] = useState<string | undefined>();
   const [isLandingMode, setIsLandingMode] = useState<boolean>(false);
+  const [showSplash, setShowSplash] = useState<boolean>(false);
+  const [forceNegotiationView, setForceNegotiationView] = useState<boolean>(false);
+
+  // Show wheelie-bin launch animation on first visit in this session
+  useEffect(() => {
+    try {
+      const seen = sessionStorage.getItem("wastelink_splash_seen");
+      if (!seen) {
+        setShowSplash(true);
+      }
+    } catch {
+      setShowSplash(true);
+    }
+  }, []);
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+    try {
+      sessionStorage.setItem("wastelink_splash_seen", "1");
+    } catch {
+      // Ignore storage errors
+    }
+  };
 
   // Sync tab when role changes
   useEffect(() => {
@@ -69,13 +93,18 @@ export default function HomeApp() {
       return;
     }
     setIsLandingMode(false);
+    setForceNegotiationView(false);
     setActiveTab(tab);
     if (reqId) setSelectedRequestId(reqId);
   };
 
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-[#F7F9F5]">
+      {showSplash && <WheelieBinSplash onComplete={handleSplashComplete} />}
       
+      {/* Evaluator Quick Control Bar */}
+      <DemoBanner />
+
       {/* Top Navigation */}
       <Navbar
         currentTab={activeTab}
@@ -88,7 +117,7 @@ export default function HomeApp() {
         {/* Toggle Landing / Public Marketing View */}
         <div className="flex items-center justify-between mb-4 pb-2 border-b border-gray-200">
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-500 font-medium">Platform Mode:</span>
+            <span className="text-xs text-gray-500 font-medium">Platform View:</span>
             <button
               onClick={() => setIsLandingMode(false)}
               className={`text-xs px-2.5 py-1 rounded-lg font-bold transition-all ${
@@ -108,6 +137,14 @@ export default function HomeApp() {
               }`}
             >
               Public Landing Page
+            </button>
+            <button
+              onClick={() => setShowSplash(true)}
+              className="text-xs px-2.5 py-1 rounded-lg font-bold bg-emerald-50 text-[#14532D] border border-emerald-200 hover:bg-emerald-100 transition-all inline-flex items-center gap-1"
+              title="Replay launch animation"
+            >
+              <Play className="w-3 h-3 fill-current" />
+              <span>Replay Intro</span>
             </button>
           </div>
 
@@ -147,38 +184,80 @@ export default function HomeApp() {
 
                 {activeTab === "nearby" && (
                   <NearbyCollectorsView
-                    onRequestDirect={(col) => {
+                    onRequestDirect={() => {
                       setActiveTab("request");
                     }}
                   />
                 )}
 
-                {activeTab === "tracking" && activeRequest && (
-                  <div className="space-y-6">
-                    {activeRequest.status === "negotiating" ? (
-                      <PriceNegotiationChat
-                        request={activeRequest}
-                        onNegotiationComplete={() => {
-                          setActiveTab("tracking");
-                        }}
-                      />
-                    ) : (
-                      <CollectionLiveTracker
-                        request={activeRequest}
-                        onPayNow={() => setActiveTab("payment")}
-                        onOpenNegotiation={() => {
-                          // Toggle open
-                        }}
-                      />
-                    )}
-                  </div>
+                {activeTab === "tracking" && (
+                  activeRequest ? (
+                    <div className="space-y-6">
+                      {activeRequest.status === "negotiating" || forceNegotiationView ? (
+                        <div className="space-y-3">
+                          {forceNegotiationView && activeRequest.status !== "negotiating" && (
+                            <button
+                              onClick={() => setForceNegotiationView(false)}
+                              className="text-xs font-bold text-[#14532D] hover:underline flex items-center gap-1"
+                            >
+                              &larr; Back to Live Collection Tracker
+                            </button>
+                          )}
+                          <PriceNegotiationChat
+                            request={activeRequest}
+                            onNegotiationComplete={() => {
+                              setForceNegotiationView(false);
+                              setActiveTab("tracking");
+                            }}
+                          />
+                        </div>
+                      ) : (
+                        <CollectionLiveTracker
+                          request={activeRequest}
+                          onPayNow={() => setActiveTab("payment")}
+                          onOpenNegotiation={() => setForceNegotiationView(true)}
+                        />
+                      )}
+                    </div>
+                  ) : (
+                    <div className="bg-white rounded-2xl p-10 text-center border border-[#E5EAE4] shadow-xs space-y-3">
+                      <Clock className="w-10 h-10 text-gray-300 mx-auto" />
+                      <h3 className="text-base font-bold text-[#17231B]">No Active Collection Found</h3>
+                      <p className="text-xs text-[#647067] max-w-md mx-auto">
+                        You don&apos;t have a collection in progress right now. Request an on-demand pickup to start tracking a nearby tricycle collector.
+                      </p>
+                      <button
+                        onClick={() => setActiveTab("request")}
+                        className="px-5 py-2.5 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-[#16A34A] transition-colors inline-flex items-center gap-1.5"
+                      >
+                        <PlusCircle className="w-4 h-4" />
+                        <span>Request Rubbish Pickup</span>
+                      </button>
+                    </div>
+                  )
                 )}
 
-                {activeTab === "payment" && activeRequest && (
-                  <PaymentView
-                    request={activeRequest}
-                    onPaymentSuccess={() => setActiveTab("history")}
-                  />
+                {activeTab === "payment" && (
+                  activeRequest ? (
+                    <PaymentView
+                      request={activeRequest}
+                      onPaymentSuccess={() => setActiveTab("history")}
+                    />
+                  ) : (
+                    <div className="bg-white rounded-2xl p-10 text-center border border-[#E5EAE4] shadow-xs space-y-3">
+                      <DollarSign className="w-10 h-10 text-gray-300 mx-auto" />
+                      <h3 className="text-base font-bold text-[#17231B]">No Pending Payment</h3>
+                      <p className="text-xs text-[#647067] max-w-md mx-auto">
+                        Payments are enabled once a collector completes your pickup. View your past receipts in Collection History.
+                      </p>
+                      <button
+                        onClick={() => setActiveTab("history")}
+                        className="px-5 py-2.5 bg-[#14532D] text-white rounded-xl text-xs font-bold hover:bg-[#16A34A] transition-colors"
+                      >
+                        View Collection History
+                      </button>
+                    </div>
+                  )
                 )}
 
                 {activeTab === "history" && (
@@ -236,7 +315,7 @@ export default function HomeApp() {
 
       </main>
 
-      {/* MOBILE BOTTOM NAVIGATION BAR (for easy one-handed operation on smartphones) */}
+      {/* MOBILE BOTTOM NAVIGATION BAR */}
       <nav aria-label="Mobile Navigation Bar" className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 py-2 px-3 shadow-lg">
         <div className="flex items-center justify-around text-center">
           
@@ -396,7 +475,7 @@ export default function HomeApp() {
                   activeTab === "disputes" ? "text-[#14532D] font-bold" : "text-gray-500"
                 }`}
               >
-                <AlertTriangle className="w-5 h-5 mb-0.5" />
+                <ShieldCheck className="w-5 h-5 mb-0.5" />
                 <span>Disputes</span>
               </button>
             </>
@@ -408,6 +487,16 @@ export default function HomeApp() {
       {/* Footer */}
       <Footer />
 
+      {/* Global Toast Notifications */}
+      <ToastContainer toasts={toasts} onDismiss={dismissToast} />
     </div>
+  );
+}
+
+export default function HomeApp() {
+  return (
+    <WasteAppProvider>
+      <WasteLinkMainApp />
+    </WasteAppProvider>
   );
 }

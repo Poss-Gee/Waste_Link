@@ -15,6 +15,7 @@ import {
   Info,
   CheckCircle2
 } from "lucide-react";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
 
 export default function DemoBanner() {
   const {
@@ -35,19 +36,23 @@ export default function DemoBanner() {
 
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const [showHelpModal, setShowHelpModal] = useState(false);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [resetNotice, setResetNotice] = useState(false);
 
   const handleReset = () => {
-    if (confirm("Reset all prototype data to initial sample Ghanaian dataset?")) {
-      resetAllDemoData();
-      setResetNotice(true);
-      setTimeout(() => setResetNotice(false), 3000);
-    }
+    setShowResetConfirm(true);
+  };
+
+  const confirmReset = () => {
+    setShowResetConfirm(false);
+    resetAllDemoData();
+    setResetNotice(true);
+    setTimeout(() => setResetNotice(false), 3000);
   };
 
   return (
     <>
-      <aside aria-label="Prototype Evaluator Control Bar" className="bg-[#14532D] text-white text-xs border-b border-[#0e3b20] z-50 sticky top-0 shadow-md">
+      <aside aria-label="Prototype Evaluator Control Bar" className="bg-[#14532D] text-white text-xs border-b border-[#0e3b20] z-50 relative shadow-md">
         <div className="max-w-7xl mx-auto px-3 py-2 flex flex-wrap items-center justify-between gap-2">
           
           {/* Brand & Badge */}
@@ -334,6 +339,17 @@ export default function DemoBanner() {
           </div>
         </div>
       )}
+      <ConfirmDialog
+        isOpen={showResetConfirm}
+        title="Reset Prototype Data?"
+        description="This will restore all households, collectors, collection requests, negotiations, and receipts back to the initial Ghanaian sample dataset."
+        confirmLabel="Reset Data"
+        cancelLabel="Keep Changes"
+        variant="danger"
+        onConfirm={confirmReset}
+        onCancel={() => setShowResetConfirm(false)}
+      />
     </>
   );
 }
+

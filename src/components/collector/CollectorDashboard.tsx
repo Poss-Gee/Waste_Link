@@ -336,3 +336,4 @@ export default function CollectorDashboard({ onNavigate }: CollectorDashboardPro
     </div>
   );
 }
+

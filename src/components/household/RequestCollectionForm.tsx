@@ -41,7 +41,7 @@ export default function RequestCollectionForm({
   onSuccess,
   onCancel,
 }: RequestCollectionFormProps) {
-  const { currentUser, createCollectionRequest } = useWasteApp();
+  const { currentUser, createCollectionRequest, showToast } = useWasteApp();
   const household = currentUser as HouseholdUser;
 
   // Form State
@@ -63,6 +63,12 @@ export default function RequestCollectionForm({
   const [estimatedPrice, setEstimatedPrice] = useState<number>(45);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<{
+    area?: string;
+    landmark?: string;
+    address?: string;
+    description?: string;
+  }>({});
 
   // Update suggested price whenever quantity or category changes
   const updatePriceEstimate = (q: WasteQuantity, c: WasteCategory) => {
@@ -88,26 +94,49 @@ export default function RequestCollectionForm({
     updatePriceEstimate(quantity, newC);
   };
 
+  const validateForm = () => {
+    const nextErrors: typeof errors = {};
+    if (!area.trim() || area.trim().length < 2) {
+      nextErrors.area = "Please enter your area or neighbourhood (e.g. Madina, East Legon).";
+    }
+    if (!landmark.trim() || landmark.trim().length < 3) {
+      nextErrors.landmark = "Please provide a nearby landmark so the tricycle rider can find you.";
+    }
+    if (!address.trim() || address.trim().length < 5) {
+      nextErrors.address = "Please enter a clear street address or house/gate description.";
+    }
+    if (!description.trim() || description.trim().length < 10) {
+      nextErrors.description = "Please briefly describe the waste load (at least 10 characters).";
+    }
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) {
+      showToast("Please fix the highlighted form fields before broadcasting.", "error");
+      return;
+    }
     setIsSubmitting(true);
 
     setTimeout(() => {
       const created = createCollectionRequest({
-        area,
-        address,
-        landmark,
+        area: area.trim(),
+        address: address.trim(),
+        landmark: landmark.trim(),
         lat,
         lng,
         wasteCategory,
         quantity,
-        description,
-        specialInstructions,
+        description: description.trim(),
+        specialInstructions: specialInstructions.trim(),
         photoUrl,
         initialEstimatedPrice: estimatedPrice,
       });
 
       setIsSubmitting(false);
+      showToast(`Collection #${created.id} broadcasted to nearby tricycles!`, "success");
       onSuccess(created.id);
     }, 600);
   };
@@ -169,12 +198,22 @@ export default function RequestCollectionForm({
               </label>
               <input
                 type="text"
-                required
                 value={area}
-                onChange={(e) => setArea(e.target.value)}
+                onChange={(e) => {
+                  setArea(e.target.value);
+                  if (errors.area) setErrors((prev) => ({ ...prev, area: undefined }));
+                }}
                 placeholder="e.g. Madina, East Legon, Adenta"
-                className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+                className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-emerald-500 focus:outline-hidden ${
+                  errors.area ? "border-rose-400 bg-rose-50/40" : "border-gray-300"
+                }`}
               />
+              {errors.area && (
+                <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                  <span>{errors.area}</span>
+                </p>
+              )}
             </div>
 
             <div>
@@ -183,12 +222,22 @@ export default function RequestCollectionForm({
               </label>
               <input
                 type="text"
-                required
                 value={landmark}
-                onChange={(e) => setLandmark(e.target.value)}
+                onChange={(e) => {
+                  setLandmark(e.target.value);
+                  if (errors.landmark) setErrors((prev) => ({ ...prev, landmark: undefined }));
+                }}
                 placeholder="e.g. Opposite Starbites, Behind Total station"
-                className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+                className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-emerald-500 focus:outline-hidden ${
+                  errors.landmark ? "border-rose-400 bg-rose-50/40" : "border-gray-300"
+                }`}
               />
+              {errors.landmark && (
+                <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                  <span>{errors.landmark}</span>
+                </p>
+              )}
             </div>
 
             <div className="sm:col-span-2">
@@ -197,12 +246,22 @@ export default function RequestCollectionForm({
               </label>
               <input
                 type="text"
-                required
                 value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                onChange={(e) => {
+                  setAddress(e.target.value);
+                  if (errors.address) setErrors((prev) => ({ ...prev, address: undefined }));
+                }}
                 placeholder="e.g. House 24, Boundary Road (Green gate)"
-                className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+                className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-emerald-500 focus:outline-hidden ${
+                  errors.address ? "border-rose-400 bg-rose-50/40" : "border-gray-300"
+                }`}
               />
+              {errors.address && (
+                <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                  <span>{errors.address}</span>
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -285,12 +344,22 @@ export default function RequestCollectionForm({
             </label>
             <textarea
               rows={2}
-              required
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => {
+                setDescription(e.target.value);
+                if (errors.description) setErrors((prev) => ({ ...prev, description: undefined }));
+              }}
               placeholder="e.g. 4 black bin bags filled with kitchen rubbish, tied tightly."
-              className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+              className={`w-full text-xs px-3 py-2.5 rounded-xl border focus:ring-2 focus:ring-emerald-500 focus:outline-hidden ${
+                errors.description ? "border-rose-400 bg-rose-50/40" : "border-gray-300"
+              }`}
             />
+            {errors.description && (
+              <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
+                <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                <span>{errors.description}</span>
+              </p>
+            )}
           </div>
 
           <div>
@@ -384,3 +453,4 @@ export default function RequestCollectionForm({
     </div>
   );
 }
+

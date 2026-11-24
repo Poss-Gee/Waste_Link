@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { WasteAppProvider } from "@/context/WasteAppContext";
-import DemoBanner from "@/components/common/DemoBanner";
 
 export const metadata: Metadata = {
   title: "WasteLink Ghana — Smart Household Waste Collection & Negotiated Payments",
@@ -27,15 +25,11 @@ export default function RootLayout({
       <head>
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
       </head>
       <body className="min-h-screen bg-[#F7F9F5] text-[#17231B] antialiased flex flex-col selection:bg-eco-light selection:text-forest">
-        <WasteAppProvider>
-          <DemoBanner />
-          <div className="flex-1 flex flex-col">
-            {children}
-          </div>
-        </WasteAppProvider>
+        {children}
       </body>
     </html>
   );

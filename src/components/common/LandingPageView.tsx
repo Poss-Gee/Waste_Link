@@ -267,3 +267,4 @@ export default function LandingPageView({ onEnterRole }: LandingPageViewProps) {
     </div>
   );
 }
+

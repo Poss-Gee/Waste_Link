@@ -39,11 +39,14 @@ export default function ReceiptModal({ request, onClose }: ReceiptModalProps) {
             <X className="w-5 h-5" />
           </button>
           
-          <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-2 text-emerald-300">
-            <CheckCircle2 className="w-7 h-7" />
+          <div className="bg-white rounded-xl px-3 py-1.5 inline-block mx-auto mb-2 shadow-sm">
+            <img
+              src="/logo.png"
+              alt="WasteLink Ghana"
+              className="h-9 w-auto object-contain"
+            />
           </div>
-          <h2 className="text-xl font-bold tracking-tight">WasteLink Ghana</h2>
-          <p className="text-xs text-emerald-200 mt-0.5">Official Service & Payment Receipt</p>
+          <p className="text-xs text-emerald-200 mt-0.5 print:text-gray-700">Official Service &amp; Payment Receipt</p>
           <div className="mt-3 inline-block bg-white/10 px-3 py-1 rounded-full text-[11px] font-mono tracking-wider">
             {request.receiptNumber || `REC-GH-2026-${request.id.slice(-4)}`}
           </div>
@@ -160,3 +163,4 @@ export default function ReceiptModal({ request, onClose }: ReceiptModalProps) {
     </div>
   );
 }
+

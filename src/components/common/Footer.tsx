@@ -11,11 +11,12 @@ export default function Footer() {
           
           {/* Brand Info */}
           <div className="space-y-3 md:col-span-1">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
-                <Recycle className="w-5 h-5 text-emerald-200" />
-              </div>
-              <span className="font-extrabold text-white text-lg tracking-tight">WasteLink Ghana</span>
+            <div className="inline-block bg-white rounded-xl px-3 py-1.5 shadow-sm">
+              <img
+                src="/logo.png"
+                alt="WasteLink Ghana"
+                className="h-10 w-auto object-contain"
+              />
             </div>
             <p className="text-xs text-emerald-200/90 leading-relaxed">
               Connecting Homes. Empowering Collectors. Cleaner Communities. An independent Ghanaian digital platform linking households with verified tricycle waste collectors.
@@ -89,3 +90,4 @@ export default function Footer() {
     </footer>
   );
 }
+
